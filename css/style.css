@@ -11,6 +11,9 @@ main{
     height: 100vh;
     background-color: #272C30;
 }
+@media screen and (max-width:790px){
+    main{flex-direction: column;height: auto;}
+}
 /* players part */
 .players{width:100%}
 .title{
@@ -29,6 +32,7 @@ main{
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
 .add h4, .remove h4{
     color: #fff;
     font-size: 16px;
@@ -48,6 +52,15 @@ main{
 }
 #remove-btn{
     background-color: #E74C3C;
+}
+@media screen and (max-width:790px){
+    .add, .remove{
+      flex-direction: column;
+      text-align: center;
+    }
+    #add-btn, #remove-btn{
+       margin:10px auto
+    }
 }
 /* select */
 #forma{
@@ -87,4 +100,40 @@ th,td {margin: 0;padding: 0;}
     background-size: contain;
     width: 100%;
     height: calc(100vh - 100px) ;
+}
+@media screen and (max-width:790px){
+    .stad{height: calc(100vh - 200px);}
+}
+.team{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    padding-bottom:15px;
+    align-items: center;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player {
+    padding:20px;
+    background-color: white;
+    position: relative;
+    margin-right: 15px;
+    margin-bottom: 30px;
+}
+
+.goal .player{width:20px;height: 20px;}
+
+@media screen and (max-width:390px){
+    .stad{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .player {
+        padding:15px;
+    }
 }
