@@ -1,0 +1,90 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", serif;
+}
+main{
+    display: flex;
+    align-items: center;
+    padding:40px 60px;
+    height: 100vh;
+    background-color: #272C30;
+}
+/* players part */
+.players{width:100%}
+.title{
+    color: #F1C40F;
+    font-size: 23px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+/* plaer add and remove table */
+.add-table{
+    background-color: #1F1F1F;
+    padding:20px 30px;
+}
+.add, .remove{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.add h4, .remove h4{
+    color: #fff;
+    font-size: 16px;
+}
+#add-btn, #remove-btn{
+    cursor: pointer;
+    width:120px;
+    height: 25px;
+    color: #fff;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+#add-btn{
+    background-color: #2ECC71;
+}
+#remove-btn{
+    background-color: #E74C3C;
+}
+/* select */
+#forma{
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #2C2C2C;
+    color: #fff;
+    border:2px solid #F1C40F;
+}
+/* table players */
+table{
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    border-collapse: collapse
+}
+    
+tr{height: 40px;}
+.table-header{
+    background-color: #D9D9D9;
+}
+.table-heading{
+    background-color: #B9B9B9;
+}
+th,td {margin: 0;padding: 0;}
+.table-content{
+    background-color: #1F1F1F;
+    color: #fff;
+}
+/* stadium part */
+.stad{
+    background-image: url('../img/41290.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    height: calc(100vh - 100px) ;
+}
