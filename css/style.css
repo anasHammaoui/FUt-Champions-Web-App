@@ -138,7 +138,7 @@ th,td {margin: 0;padding: 0;}
         padding:30px 25px;
     }
 }
-/* adding player form */
+/******************* adding player form *******************/
 .form-adding{
     position: absolute;
     left: 0;;
@@ -299,3 +299,20 @@ th,td {margin: 0;padding: 0;}
 .player-stats div span{display: block;}
 /* toggle to hide and show the content */
 .hide{display: none;}
+
+/******************* view cards ******************/
+.view-cards.form-adding{
+    left: 0;
+    right: 0;
+    top: 0;
+    min-height: 100vh;
+}
+.view-cards i {
+    padding: 40px 15px;
+}
+.all-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
