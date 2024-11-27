@@ -8,9 +8,66 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <!-- font awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
 <body>
     <main>
+        <div class="form-adding hide">
+            <i class="fa-solid fa-xmark"></i>
+            <!-- Form part -->
+            <div class="form-part">
+              <h1>Ajouter Un Joueur</h1>
+              <form>
+                <div class="form-row">
+                  <input type="text" placeholder="Nom de joueur">
+                  <input type="text" placeholder="Position">
+                </div>
+                <div class="form-row">
+                  <input type="text" placeholder="Image URL">
+                  <input type="text" placeholder="Flag URL">
+                </div>
+                <div class="form-row">
+                  <input type="text" placeholder="Pace">
+                  <input type="text" placeholder="Shooting">
+                </div>
+                <div class="form-row">
+                  <input type="text" placeholder="Passing">
+                  <input type="text" placeholder="Dribbling">
+                </div>
+                <div class="form-row">
+                  <input type="text" placeholder="Defending">
+                  <input type="text" placeholder="Physical">
+                </div>
+                <button type="submit">Ajouter</button>
+              </form>
+            </div>
+            
+            <!-- card part -->
+            <div class="player-card">
+                <div class="card-container">
+                  <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+                  <div class="card-content">
+                    <div class="card-header">
+                      <span class="rating">90</span>
+                      <span class="position">CF</span>
+                    </div>
+                    <div class="badge-container">
+                      <img class="badge" src="https://cdn.sofifa.net/players/158/023/25_120.png " alt="Badge">
+                    </div>
+                    <div class="player-name">Messi</div>
+                    <div class="player-stats">
+                      <div>PAC <span>80</span></div>
+                      <div>SHO <span>87</span></div>
+                      <div>PAS <span>90</span></div>
+                      <div>DRI <span>94</span></div>
+                      <div>DEF <span>33</span></div>
+                      <div>PHY <span>64</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
         <div class="players">
             <h3 class="title">FUT-Champ-Ultimate-Team</h3>
             <div class="add-table">
@@ -22,6 +79,10 @@
                     <h4>Remove A Player :</h4>
                     <button id="remove-btn">REMOVE</button>
                 </div>
+                <div class="cards">
+                    <h4>Player cards :</h4>
+                    <button id="show-btn">Show</button>
+                </div>
                 <select name="formation" id="forma">
                     <Option value="433">4-3-3</Option>
                     <Option value="442">4-4-2</Option>
@@ -30,7 +91,7 @@
             <div class="existing-players">
                 <table class="exist">
                         <tr>
-                            <th colspan="2" class="table-header">Players</th>
+                            <th colspan="2" class="table-header">Joueurs</th>
                         </tr>
     <tr class="table-heading">
                         <th>Nom</th>
@@ -72,6 +133,8 @@
           </div>
        </div>
         </div>
+
     </main>
+    <script src="js/script.js"></script>
 </body>
 </html>

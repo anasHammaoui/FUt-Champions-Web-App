@@ -10,6 +10,7 @@ main{
     padding:40px 60px;
     height: 100vh;
     background-color: #272C30;
+    position: relative;
 }
 @media screen and (max-width:985px){
     main{flex-direction: column;height: auto;}
@@ -30,17 +31,17 @@ main{
     background-color: #1F1F1F;
     padding:20px 30px;
 }
-.add, .remove{
+.add, .remove,.cards{
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.add h4, .remove h4{
+.add h4, .remove h4, .cards h4{ 
     color: #fff;
     font-size: 16px;
 }
-#add-btn, #remove-btn{
+#add-btn, #remove-btn, #show-btn{
     cursor: pointer;
     width:120px;
     height: 25px;
@@ -55,6 +56,9 @@ main{
 }
 #remove-btn{
     background-color: #E74C3C;
+}
+#show-btn{
+    background-color: #3c9ae7;
 }
 @media screen and (max-width:790px){
     .add, .remove{
@@ -134,3 +138,164 @@ th,td {margin: 0;padding: 0;}
         padding:30px 25px;
     }
 }
+/* adding player form */
+.form-adding{
+    position: absolute;
+    left: 0;;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #272C30;
+    z-index: 5;
+    display: flex;
+    background-color: #2c2c2c;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    gap: 20px;
+    align-items: center;
+    padding:20px 60px;
+}
+.fa-xmark{
+    color: #fff;
+    font-size: 40px;
+    position: absolute;
+    top:30px;
+    right:50px;
+    cursor: pointer;
+}
+@media screen  and (max-width:570px){
+    .form-adding{
+        flex-direction: column;
+        padding:30px 15px
+    }
+    .fa-xmark{
+        top:-10px;
+        right: 15px;
+    }
+}
+ 
+  /* Form part */
+  .form-part {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-adding h1 {
+    text-align: center;
+    color: #ffc107;
+    margin-bottom: 20px;
+  }
+  
+  .form-adding form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .form-adding .form-row {
+    display: flex;
+    gap: 10px;
+  }
+  @media screen  and (max-width:570px){
+    .form-row{
+        flex-direction: column;
+        
+    }
+}
+  
+.form-adding  input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #444;
+    color: #fff;
+  }
+  .form-adding  input:focus{
+    border: 2px solid #ffc107;
+    outline: none;
+  }
+  .form-adding  input::placeholder {
+    color: #ccc;
+  }
+  
+  .form-adding button {
+    padding: 12px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .form-adding button:hover {
+    background-color: #218838;
+  }
+ /* player card part */
+.player-card {
+    width: 350px;
+  }
+  
+ .card-container{
+    position: relative;
+  }
+.card-container .card-background{width: 100%;}
+.card-content{
+    position: absolute;
+    top: 0;;
+    left: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 53px;
+}
+/* every div in the content */
+.card-content div{width: 100%;}
+/* card header */
+.card-content .card-header{
+    display: flex;
+    flex-direction: column;
+    margin-top:14px;
+}
+.card-header .rating, .card-header .position{
+    font-size: 40px;
+    font-weight: bold;
+    margin:0;
+    color: #352b15;
+    padding: 0;
+    line-height: 0.85;
+}
+.card-header .position{font-size: 35px;padding-left:3px}
+/* card img */
+.badge-container img{
+    width: 60%;
+    margin-left: 12%;
+    margin-top: -44px;
+}
+/* name */
+.player-name {
+    font-weight: bold;
+    font-size: 22px;
+    color: #352b15;
+    text-align: center;
+    margin-left:-53px
+}
+/* player stats */
+.player-stats{display: flex;}
+.player-stats div{
+    width: fit-content;
+     margin-right: 10px;
+     font-weight: bold;
+     color: #68552b;
+    }
+.player-stats div span{display: block;}
+/* toggle to hide and show the content */
+.hide{display: none;}
