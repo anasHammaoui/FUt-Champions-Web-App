@@ -11,8 +11,11 @@ main{
     height: 100vh;
     background-color: #272C30;
 }
-@media screen and (max-width:790px){
+@media screen and (max-width:985px){
     main{flex-direction: column;height: auto;}
+}
+@media screen and (max-width:580px){
+    main{flex-direction: column;height: auto; padding:20px 10px}
 }
 /* players part */
 .players{width:100%}
@@ -118,7 +121,7 @@ th,td {margin: 0;padding: 0;}
     align-items: center;
 }
 .player {
-    padding:20px;
+    padding:40px 30px;
     background-color: white;
     position: relative;
     margin-right: 15px;
@@ -126,14 +129,8 @@ th,td {margin: 0;padding: 0;}
 }
 
 .goal .player{width:20px;height: 20px;}
-
-@media screen and (max-width:390px){
-    .stad{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
+@media screen and (max-width:793px){
     .player {
-        padding:15px;
+        padding:30px 25px;
     }
 }
