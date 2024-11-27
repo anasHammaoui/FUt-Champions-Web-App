@@ -111,6 +111,7 @@ th,td {margin: 0;padding: 0;}
 @media screen and (max-width:790px){
     .stad{height: calc(100vh - 200px);}
 }
+/* team formation */
 .team{
     display: flex;
     flex-direction: column;
@@ -123,20 +124,85 @@ th,td {margin: 0;padding: 0;}
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top:50px
 }
+/* players and caards */
 .player {
-    padding:40px 30px;
-    background-color: white;
+    width:90px;
+    height: 60px;
     position: relative;
     margin-right: 15px;
     margin-bottom: 30px;
 }
+.player .player-card{
+    width:90px;
+}
+.player .card-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    left: 0;
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    margin-left: 10px;
+    margin-top: -2px;
+}
+.player .card-content .rating, .player .card-content .position{font-size:15px;padding-left: 0;}
+.player .card-content .badge-container img {
+    width: 68%;
+    margin-left: 12%;
+    margin-top: -30px;
+}
+.player .player-name {
+    font-weight: bold;
+    font-size: 14px;
+    color: #352b15;
+    margin-top: -10px;
+    text-align: center;
+    margin-left: -10px
+}
+.player .player-stats{
+    padding:0 5px
 
+}
+.player .player-stats div{
+    font-size: 4px;
+    text-align: center;
+    margin-right: 2px;
+    margin-top:-3px;
+}
 .goal .player{width:20px;height: 20px;}
+@media  (min-width:793px) {
+    .goal .player{
+        width:90px;height: 60px;
+        padding-bottom: 36px;
+    }
+    .goal{
+        margin-bottom: 35px;
+        margin-top:36px
+    }
+}
 @media screen and (max-width:793px){
     .player {
         padding:30px 25px;
+    background-color: white;
+    width:auto;
+    height: auto;
+
     }
+    .player .player-card{
+       display: none;
+    }
+    .goal{
+        padding: 0;
+        margin-bottom: 0;
+    }
+    .row{margin-top: 0;}
 }
 /******************* adding player form *******************/
 .form-adding{
