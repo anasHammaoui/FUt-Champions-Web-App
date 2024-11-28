@@ -189,7 +189,7 @@ th,td {margin: 0;padding: 0;}
 }
 @media screen and (max-width:793px){
     .player {
-        padding:30px 25px;
+        /* padding:30px 25px; */
     background-color: white;
     width:auto;
     height: auto;
@@ -203,6 +203,38 @@ th,td {margin: 0;padding: 0;}
         margin-bottom: 0;
     }
     .row{margin-top: 0;}
+}
+/* player texts for small screens */
+.player-text{
+    display: none;
+}
+@media screen and (max-width:793px){
+    .player-text{
+        display: block;
+    }
+}
+.player-text .card-header{
+    display: flex
+    ;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 5px;
+}
+.player-text .card-header span{
+    font-size:10px
+}
+.player-text .player-name {
+    font-size: 10px;
+    color: #352b15;
+    margin: auto;
+
+}
+.player-text .player-stats div {
+    font-size: 3px;
+    text-align: center;
+    margin-right: 2px;
+    margin-top: 0px;
+    padding-bottom: 5px;
 }
 /******************* adding player form *******************/
 .form-adding{
