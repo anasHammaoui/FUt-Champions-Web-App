@@ -176,7 +176,6 @@ th,td {margin: 0;padding: 0;}
     margin-right: 2px;
     margin-top:-3px;
 }
-.goal .player{width:20px;height: 20px;}
 @media  (min-width:793px) {
     .goal .player{
         width:90px;height: 60px;
@@ -212,6 +211,9 @@ th,td {margin: 0;padding: 0;}
     .player-text{
         display: block;
     }
+    .player{
+        margin-bottom:46px
+    }
 }
 .player-text .card-header{
     display: flex
@@ -236,6 +238,10 @@ th,td {margin: 0;padding: 0;}
     margin-top: 0px;
     padding-bottom: 5px;
 }
+.goal .player{
+    margin-bottom:20px
+}
+.row{margin-left:20px}
 /******************* adding player form *******************/
 .form-adding{
     position: absolute;
@@ -310,7 +316,15 @@ th,td {margin: 0;padding: 0;}
     background-color: #444;
     color: #fff;
   }
-  .form-adding  input:focus{
+.form-adding select{
+    flex:1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #444;
+    color: #fff;
+}
+  .form-adding  input:focus, .form-adding select{
     border: 2px solid #ffc107;
     outline: none;
   }
@@ -335,7 +349,7 @@ th,td {margin: 0;padding: 0;}
   }
  /* player card part */
 .player-card {
-    width: 350px;
+    width: 300px;
   }
   
  .card-container{
@@ -353,7 +367,7 @@ th,td {margin: 0;padding: 0;}
     align-items: center;
     flex-direction: column;
     height: 100%;
-    margin-left: 53px;
+    margin-left: 46px;
 }
 /* every div in the content */
 .card-content div{width: 100%;}
@@ -364,35 +378,36 @@ th,td {margin: 0;padding: 0;}
     margin-top:14px;
 }
 .card-header .rating, .card-header .position{
-    font-size: 40px;
+    font-size: 29px;
     font-weight: bold;
     margin:0;
     color: #352b15;
     padding: 0;
     line-height: 0.85;
 }
-.card-header .position{font-size: 35px;padding-left:3px}
+.card-header .position{font-size: 18px;padding-left:3px}
 /* card img */
 .badge-container img{
     width: 60%;
     margin-left: 12%;
-    margin-top: -44px;
+    margin-top: -13px;
 }
 /* name */
 .player-name {
     font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
     color: #352b15;
     text-align: center;
     margin-left:-53px
 }
 /* player stats */
 .player-stats{display: flex;}
-.player-stats div{
+.player-stats div{  
     width: fit-content;
      margin-right: 10px;
      font-weight: bold;
      color: #68552b;
+     font-size:14px
     }
 .player-stats div span{display: block;}
 /* toggle to hide and show the content */
