@@ -18,6 +18,11 @@ main{
 @media screen and (max-width:580px){
     main{flex-direction: column;height: auto; padding:20px 10px}
 }
+@media screen and (min-width:566px){
+    .stop-scroll{
+        overflow: hidden;
+    }
+}
 /* players part */
 .players{width:100%}
 .title{

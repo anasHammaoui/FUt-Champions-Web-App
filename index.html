@@ -11,7 +11,7 @@
     <!-- font awesome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
-<body>
+<body class="body">
     <main>
         <!-- add player -->
         <div class="form-adding hide">
@@ -19,11 +19,11 @@
             <!-- Form part -->
             <div class="form-part">
               <h1>Ajouter Un Joueur</h1>
-              <form>
+              <form id="theForm">
                 <div class="form-row">
                   <select name="form-position" id="f-pos">
-                    <option value="GK">GK</option>
                     <option value="RB">RB</option>
+                    <option value="GK">GK</option>
                     <option value="CB">CB</option>
                     <option value="CB">CB</option>
                     <option value="LB">LB</option>
@@ -34,52 +34,27 @@
                     <option value="LW">LW</option>
                     <option value="ST">ST</option>
                   </select>
-                  <input type="text" placeholder="Nom de joueur">
+                  <input type="text" placeholder="Nom de joueur" id="1" name="name">
                 </div>
                 <div class="form-row">
-                  <input type="text" placeholder="Image URL">
-                  <input type="text" placeholder="Flag URL">
+                  <input type="text" placeholder="Image URL" id="2" name="photo">
+                  <input type="text" placeholder="Flag URL" id="3" name="flag">
                 </div>
                 <div class="form-row">
-                  <input type="text" placeholder="Pace">
-                  <input type="text" placeholder="Shooting">
+                  <input type="text" placeholder="Pace" id="4" name="pace">
+                  <input type="text" placeholder="Shooting" id="5" name="shooting">
                 </div>
                 <div class="form-row">
-                  <input type="text" placeholder="Passing">
-                  <input type="text" placeholder="Dribbling">
+                  <input type="text" placeholder="Passing" id="6" name="passing">
+                  <input type="text" placeholder="Dribbling" id="7" name="dribb">
                 </div>
                 <div class="form-row">
-                  <input type="text" placeholder="Defending">
-                  <input type="text" placeholder="Physical">
+                  <input type="text" placeholder="Defending" id="8" name="def">
+                  <input type="text" placeholder="Physical" id="9" name="phy">
                 </div>
                 <button type="submit">Ajouter</button>
               </form>
             </div>
-            
-            <!-- card part -->
-            <div class="player-card">
-                <div class="card-container">
-                  <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
-                  <div class="card-content">
-                    <div class="card-header">
-                      <span class="rating">90</span>
-                      <span class="position">CF</span>
-                    </div>
-                    <div class="badge-container">
-                      <img class="badge" src="https://cdn.sofifa.net/players/158/023/25_120.png " alt="Badge">
-                    </div>
-                    <div class="player-name">Messi</div>
-                    <div class="player-stats">
-                      <div>PAC <span>80</span></div>
-                      <div>SHO <span>87</span></div>
-                      <div>PAS <span>90</span></div>
-                      <div>DRI <span>94</span></div>
-                      <div>DEF <span>33</span></div>
-                      <div>PHY <span>64</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
           </div>
           <!-- view cards -->
 
