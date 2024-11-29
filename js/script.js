@@ -95,34 +95,46 @@ let showCards = document.querySelector(".all-cards");
 //     }
 // }
 // add players
-let theForm = document.getElementById("theForm");
+function addPlayer(){
+  let theForm = document.getElementById("theForm");
 let allPlayers= JSON.parse(localStorage.getItem("allPlayers")) || [];
 theForm.addEventListener("submit",(e)=>{
-e.preventDefault();
-// get all data
+  // get all data
 const pPos = document.getElementById("f-pos").value.trim().toUpperCase( );
-  const pName = document.getElementById("1").value.trim().toUpperCase( );
-  const pPho = document.getElementById("2").value.trim();
-  const pFlag = document.getElementById("3").value.trim().toUpperCase( );
-  const pPace = document.getElementById("4").value.trim().toUpperCase( );
-  const pShoo = document.getElementById("5").value.trim().toUpperCase( );
-  const pPass = document.getElementById("6").value.trim().toUpperCase( );
-  const pDri = document.getElementById("7").value.trim().toUpperCase();
-  const pPhy = document.getElementById("6").value.trim().toUpperCase();
-  let allInputs = document.querySelectorAll("input");
+const pName = document.getElementById("1").value.trim().toUpperCase();
+const pPho = document.getElementById("2").value.trim();
+const pScore = document.getElementById("3").value.trim().toUpperCase( );
+const pPace = document.getElementById("4").value.trim().toUpperCase( );
+const pShoo = document.getElementById("5").value.trim().toUpperCase( );
+const pPass = document.getElementById("6").value.trim().toUpperCase( );
+const pDri = document.getElementById("7").value.trim().toUpperCase();
+const pDef = document.getElementById("8").value.trim().toUpperCase();
+const pPhy = document.getElementById("9").value.trim().toUpperCase();
+let allInputs = document.querySelectorAll("input");
+  // FORM VALIDATION
+  if(isNaN(parseInt(pScore))|| parseInt(pScore) < 0 ||parseInt(pScore) > 99 && isNaN(parseInt(pPace))|| parseInt(pPace) < 0 ||parseInt(pPace) > 99 && isNaN(parseInt(pShoo))|| parseInt(pShoo) < 0 ||parseInt(pShoo) > 99 && isNaN(parseInt(pPass))|| parseInt(pPass) < 0 ||parseInt(pPass) > 99 && isNaN(parseInt(pPass))|| parseInt(pPass) < 0 ||parseInt(pPass) > 99  && isNaN(parseInt(pDri))|| parseInt(pDri) < 0 ||parseInt(pDri) > 99 && isNaN(parseInt(pPhy))|| parseInt(pPhy) < 0 ||parseInt(pPhy) > 99 && isNaN(parseInt(pDef))|| parseInt(pDef) < 0 ||parseInt(pDef) > 99 ){
+    alert("tous les champs doivent être corrects et remplis");
+    return;
+  } 
+  if (pName == ""){
+    alert("Le nom de joueur est obligatoire");
+    return;
+  }
+e.preventDefault();
   // set data to a variable 
 allPlayers.push({
   player_name : pName,
    player_pos: pPos, 
    player_photo: pPho, 
-   player_flag: pFlag, 
+   player_score: pScore, 
    player_pace: pPace, 
    player_shooting: pShoo, 
    player_passing: pPass, 
    player_dribling: pDri, 
+   player_deffending: pDef,
    player_physique: pPhy, 
 })
-console.log(allPlayers)
+alert("Le joueur a ete ajoutee avec succes")
 // empty the inputs after submiting
 allInputs.forEach(input =>{
   input.value = "";
@@ -142,7 +154,7 @@ allPlayers.forEach(play=>{
           <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
           <div class="card-content">
             <div class="card-header">
-              <span class="rating">99</span>
+              <span class="rating">${play.player_score}</span>
               <span class="position">${play.player_pos}</span>
             </div>
             <div class="badge-container">
@@ -154,7 +166,8 @@ allPlayers.forEach(play=>{
               <div>SHO <span>${play.player_shooting}</span></div>
               <div>PAS <span>${play.player_passing}</span></div>
               <div>DRI <span>${play.player_dribling}</span></div>
-              <div>DEF <span>${play.player_physique}</span></div>
+              <div>DEF <span>${play.player_deffending}</span></div>
+              <div>PHY <span>${play.player_physique}</span></div>
             </div>
           </div>
         </div>
@@ -162,6 +175,10 @@ allPlayers.forEach(play=>{
 `
     }
  })
+}
+// call add player func 
+addPlayer();
+
 
 /*
 GK (Goalkeeper)
