@@ -19,21 +19,22 @@
             <!-- Form part -->
             <div class="form-part">
               <h1>Ajouter Un Joueur</h1>
-              <form id="theForm">
+              <select name="form-position" style="margin-bottom: 10px;" id="f-pos">
+                <option value="RB">RB</option>
+                <option value="GK">GK</option>
+                <option value="CB">CB</option>
+                <option value="CB">CB</option>
+                <option value="LB">LB</option>
+                <option value="CDM">CDM</option>
+                <option value="CM">CM</option>
+                <option value="CM">CM</option>
+                <option value="RW">RW</option>
+                <option value="LW">LW</option>
+                <option value="ST">ST</option>
+              </select>
+              <!-- other players -->
+              <form id="theForm " class="other">
                 <div class="form-row">
-                  <select name="form-position" id="f-pos">
-                    <option value="RB">RB</option>
-                    <option value="GK">GK</option>
-                    <option value="CB">CB</option>
-                    <option value="CB">CB</option>
-                    <option value="LB">LB</option>
-                    <option value="CDM">CDM</option>
-                    <option value="CM">CM</option>
-                    <option value="CM">CM</option>
-                    <option value="RW">RW</option>
-                    <option value="LW">LW</option>
-                    <option value="ST">ST</option>
-                  </select>
                   <input type="text" placeholder="Nom de joueur" id="1" name="name">
                 </div>
                 <div class="form-row">
@@ -51,6 +52,29 @@
                 <div class="form-row">
                   <input type="text" placeholder="Defending" id="8" name="def">
                   <input type="text" placeholder="Physical" id="9" name="phy">
+                </div>
+                <button type="submit">Ajouter</button>
+              </form>
+              <!-- gk form -->
+              <form id="theForm" class="gk-form hide">
+                <div class="form-row">
+                  <input type="text" placeholder="Nom de joueur" id="11" name="name">
+                </div>
+                <div class="form-row">
+                  <input type="text" placeholder="Image URL" id="22" name="photo">
+                  <input type="text" placeholder="Score" id="33" name="score">
+                </div>
+                <div class="form-row">
+                  <input type="text" placeholder="Diving" id="44" name="diving">
+                  <input type="text" placeholder="Handling" id="55" name="Handling">
+                </div>
+                <div class="form-row">
+                  <input type="text" placeholder="Kicking" id="66" name="Kicking">
+                  <input type="text" placeholder="Reflexxes" id="77" name="Reflexxes">
+                </div>
+                <div class="form-row">
+                  <input type="text" placeholder="Speed" id="88" name="Speed">
+                  <input type="text" placeholder="Positionning" id="99" name="Positionning">
                 </div>
                 <button type="submit">Ajouter</button>
               </form>

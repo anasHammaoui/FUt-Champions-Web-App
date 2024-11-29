@@ -417,7 +417,7 @@ th,td {margin: 0;padding: 0;}
 .player-stats div span{display: block;}
 /* toggle to hide and show the content */
 .hide{display: none;}
-
+form.hide{display: none;}
 /******************* view cards ******************/
 .view-cards.form-adding{
     left: 0;
