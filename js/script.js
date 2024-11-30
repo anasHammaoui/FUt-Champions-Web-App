@@ -13,8 +13,11 @@ document.querySelector(".add-p").addEventListener("click",()=>{
 })
 // show cards
 document.getElementById("show-btn").addEventListener("click",function (){
+  if (allPlayers.length > 0){
     document.querySelector(".view-cards").classList.remove("hide");
-
+  } else {
+    alert("Il exist aucun joueur");
+  }
 console.log(document.querySelector(".form-adding"))
 })
 document.querySelector(".out-card").addEventListener("click",()=>{
@@ -293,6 +296,7 @@ function remove(){
     del.addEventListener("click",()=>{
       console.log(allPlayers[i]);
       allPlayers.splice(i,1);
+      document.querySelectorAll(".player-card")[i].remove();
       localStorage.setItem("allPlayers",JSON.stringify(allPlayers));
     })
   })
@@ -431,9 +435,68 @@ document.querySelectorAll(".edit-card").forEach((card,i)=>{
 
 let formations = [
   {
-    formation: ""
+    formation: "4-4-2",
+    front: 2,
+    middle: 4,
+    last: 4,
+    goal: 1,
+  },
+  {
+    formation: "4-3-3",
+    front: 3,
+    middle: 3,
+    last: 4,
+    goal: 1,
   }
-]
+];
+let formationRow = document.querySelectorAll(".row");
+  for (let front = 0; front < formations.from; front++){
+    formationRow.innerHTML += `
+       <!-- player -->
+          <div class="player">
+            <!-- text part for small screens -->
+             <div class="player-text">
+              <div class="card-header">
+                <span class="rating">90</span>
+                <span class="position">CF</span>
+              </div>
+              <div class="player-name">Messi</div>
+              <div class="player-stats">
+                <div>PAC <span>80</span></div>
+                <div>SHO <span>87</span></div>
+                <div>PAS <span>90</span></div>
+                <div>DRI <span>94</span></div>
+                <div>DEF <span>33</span></div>
+                <div>PHY <span>64</span></div>
+              </div>
+             </div>
+               <!-- card part for large screens -->
+          <div class="player-card">
+              <div class="card-container">
+                <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+                <div class="card-content">
+                  <div class="card-header">
+                    <span class="rating">90</span>
+                    <span class="position">CF</span>
+                  </div>
+                  <div class="badge-container">
+                    <img class="badge" src="https://cdn.sofifa.net/players/158/023/25_120.png " alt="Badge">
+                  </div>
+                  <div class="player-name">Messi</div>
+                  <div class="player-stats">
+                    <div>PAC <span>80</span></div>
+                    <div>SHO <span>87</span></div>
+                    <div>PAS <span>90</span></div>
+                    <div>DRI <span>94</span></div>
+                    <div>DEF <span>33</span></div>
+                    <div>PHY <span>64</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    `
+  }
 /*
 GK (Goalkeeper)
 RB (Right Back)
