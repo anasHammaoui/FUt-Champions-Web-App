@@ -1,12 +1,14 @@
 // add a player
 document.getElementById("add-btn").addEventListener("click",function (){
+  document.querySelector(".form-title").innerHTML = "Ajouter un joueur";
+  document.querySelector(".action").innerHTML = "Ajouter";
     document.querySelector(".form-adding").classList.remove("hide");
-    document.querySelector(".body").classList.add("stop-scroll");
+    // call add player func 
+addPlayer();
 console.log(document.querySelector(".form-adding"))
 })
 document.querySelector(".add-p").addEventListener("click",()=>{
     document.querySelector(".form-adding").classList.add("hide");
-    document.querySelector(".body").classList.remove("stop-scroll");
 
 })
 // show cards
@@ -102,111 +104,110 @@ let allPlayers= JSON.parse(localStorage.getItem("allPlayers")) || [];
 let theSelect = document.getElementById("f-pos");
 // add players
 function addPlayer(){
+  // call the function 
+  added();
 // check if the player is goal keeper
-theSelect.addEventListener("change",()=>{
-  // not gk case
-  if (theSelect.value != "GK"){
-    pForm.classList.remove("hide")
-    gkForm.classList.add("hide")
-    pForm.addEventListener("submit",(e)=>{
-      // get all data
-    const pPos = document.getElementById("f-pos").value.trim();
-    const pName = document.getElementById("1").value.trim().toUpperCase();
-    const pPho = document.getElementById("2").value.trim();
-    const pScore = document.getElementById("3").value.trim();
-    const pPace = document.getElementById("4").value.trim();
-    const pShoo = document.getElementById("5").value.trim();
-    const pPass = document.getElementById("6").value.trim();
-    const pDri = document.getElementById("7").value.trim();
-    const pDef = document.getElementById("8").value.trim();
-    const pPhy = document.getElementById("9").value.trim();
-    let allInputs = document.querySelectorAll("input");
-      // FORM VALIDATION
-      if(isNaN(parseInt(pScore))|| parseInt(pScore) < 0 ||parseInt(pScore) > 99 && isNaN(parseInt(pPace))|| parseInt(pPace) < 0 ||parseInt(pPace) > 99 && isNaN(parseInt(pShoo))|| parseInt(pShoo) < 0 ||parseInt(pShoo) > 99 && isNaN(parseInt(pPass))|| parseInt(pPass) < 0 ||parseInt(pPass) > 99 && isNaN(parseInt(pPass))|| parseInt(pPass) < 0 ||parseInt(pPass) > 99  && isNaN(parseInt(pDri))|| parseInt(pDri) < 0 ||parseInt(pDri) > 99 && isNaN(parseInt(pPhy))|| parseInt(pPhy) < 0 ||parseInt(pPhy) > 99 && isNaN(parseInt(pDef))|| parseInt(pDef) < 0 ||parseInt(pDef) > 99 ){
-        alert("tous les champs doivent être corrects et remplis");
-        e.preventDefault()
-        return;
-      } 
-      if (pName == ""){
-        alert("Le nom de joueur est obligatoire");
-        e.preventDefault()
-    
-        return;
-      }
-    e.preventDefault();
-      // set data to a variable 
-    allPlayers.push({
-      player_name : pName,
-       player_pos: pPos, 
-       player_photo: pPho, 
-       player_score: pScore, 
-       player_pace: pPace, 
-       player_shooting: pShoo, 
-       player_passing: pPass, 
-       player_dribling: pDri, 
-       player_deffending: pDef,
-       player_physique: pPhy, 
-    })
-    alert("Le joueur a ete ajoutee avec succes")
-    // empty the inputs after submiting
-    allInputs.forEach(input =>{
-      input.value = "";
-    })
-    // save to local storage
-    localStorage.setItem("allPlayers",JSON.stringify(allPlayers)); 
-    })
-  } else {
-    pForm.classList.add("hide")
-    gkForm.classList.remove("hide")
-    gkForm.addEventListener("submit",(e)=>{
-      // get all data
-    const pPos = document.getElementById("f-pos").value.trim();
-    const pName = document.getElementById("11").value.trim().toUpperCase();
-    const pPho = document.getElementById("22").value.trim();
-    const pScore = document.getElementById("33").value.trim();
-    const pDiv = document.getElementById("44").value.trim();
-    const pHand = document.getElementById("55").value.trim();
-    const pKick = document.getElementById("66").value.trim();
-    const pRef = document.getElementById("77").value.trim();
-    const pSpee = document.getElementById("88").value.trim();
-    const pPositioning = document.getElementById("99").value.trim();
-    let allInputs = document.querySelectorAll("input");
-      // FORM VALIDATION
-      if(isNaN(parseInt(pScore))|| parseInt(pScore) < 0 ||parseInt(pScore) > 99 && isNaN(parseInt(pDiv))|| parseInt(pDiv) < 0 ||parseInt(pDiv) > 99 && isNaN(parseInt(pHand))|| parseInt(pHand) < 0 ||parseInt(pHand) > 99 && isNaN(parseInt(pKick))|| parseInt(pKick) < 0 ||parseInt(pKick) > 99 && isNaN(parseInt(pKick))|| parseInt(pKick) < 0 ||parseInt(pKick) > 99  && isNaN(parseInt(pRef))|| parseInt(pRef) < 0 ||parseInt(pRef) > 99 && isNaN(parseInt(pPositioning))|| parseInt(pPositioning) < 0 ||parseInt(pPositioning) > 99 && isNaN(parseInt(pSpee))|| parseInt(pSpee) < 0 ||parseInt(pSpee) > 99 ){
-        alert("tous les champs doivent être corrects et remplis");
-        e.preventDefault()
-        return;
-      } 
-      if (pName == ""){
-        alert("Le nom de joueur est obligatoire");
-        e.preventDefault()
-    
-        return;
-      }
-    e.preventDefault();
-      // set data to a variable 
-    allPlayers.push({
-      player_name : pName,
-       player_pos: pPos, 
-       player_photo: pPho, 
-       player_score: pScore, 
-       player_diving: pDiv, 
-       player_handling: pHand, 
-       player_kicking: pKick, 
-       player_reflex: pRef, 
-       player_speed: pSpee,
-       player_positioning: pPositioning, 
-    })
-    alert("Le joueur a ete ajoutee avec succes")
-    // empty the inputs after submiting
-    allInputs.forEach(input =>{
-      input.value = "";
-    })
-    // save to local storage
-    localStorage.setItem("allPlayers",JSON.stringify(allPlayers)); 
-    })
+theSelect.addEventListener("change",added);
+function added(){
+  {
+    // not gk case
+    if (theSelect.value != "GK"){
+      pForm.classList.remove("hide")
+      gkForm.classList.add("hide")
+      pForm.addEventListener("submit",(e)=>{
+        // get all data
+      const pPos = document.getElementById("f-pos").value.trim();
+      const pName = document.getElementById("1").value.trim().toUpperCase();
+      const pPho = document.getElementById("2").value.trim();
+      const pScore = document.getElementById("3").value.trim();
+      const pPace = document.getElementById("4").value.trim();
+      const pShoo = document.getElementById("5").value.trim();
+      const pPass = document.getElementById("6").value.trim();
+      const pDri = document.getElementById("7").value.trim();
+      const pDef = document.getElementById("8").value.trim();
+      const pPhy = document.getElementById("9").value.trim();
+      let allInputs = document.querySelectorAll("input");
+        // FORM VALIDATION
+        if(isNaN(parseInt(pScore))|| parseInt(pScore) < 0 ||parseInt(pScore) > 99 && isNaN(parseInt(pPace))|| parseInt(pPace) < 0 ||parseInt(pPace) > 99 && isNaN(parseInt(pShoo))|| parseInt(pShoo) < 0 ||parseInt(pShoo) > 99 && isNaN(parseInt(pPass))|| parseInt(pPass) < 0 ||parseInt(pPass) > 99 && isNaN(parseInt(pPass))|| parseInt(pPass) < 0 ||parseInt(pPass) > 99  && isNaN(parseInt(pDri))|| parseInt(pDri) < 0 ||parseInt(pDri) > 99 && isNaN(parseInt(pPhy))|| parseInt(pPhy) < 0 ||parseInt(pPhy) > 99 && isNaN(parseInt(pDef))|| parseInt(pDef) < 0 ||parseInt(pDef) > 99 ){
+          alert("tous les champs doivent être corrects et remplis");
+          return;
+        } 
+        if (pName == ""){
+          alert("Le nom de joueur est obligatoire");
+          return;
+        }
+      e.preventDefault();
+        // set data to a variable 
+      allPlayers.push({
+        player_name : pName,
+         player_pos: pPos, 
+         player_photo: pPho, 
+         player_score: pScore, 
+         player_pace: pPace, 
+         player_shooting: pShoo, 
+         player_passing: pPass, 
+         player_dribling: pDri, 
+         player_deffending: pDef,
+         player_physique: pPhy, 
+      })
+      alert("Le joueur a ete ajoutee avec succes")
+      // empty the inputs after submiting
+      allInputs.forEach(input =>{
+        input.value = "";
+      })
+      // save to local storage
+      localStorage.setItem("allPlayers",JSON.stringify(allPlayers)); 
+      })
+    } else {
+      pForm.classList.add("hide")
+      gkForm.classList.remove("hide")
+      gkForm.addEventListener("submit",(e)=>{
+        // get all data
+      const pPos = document.getElementById("f-pos").value.trim();
+      const pName = document.getElementById("11").value.trim().toUpperCase();
+      const pPho = document.getElementById("22").value.trim();
+      const pScore = document.getElementById("33").value.trim();
+      const pDiv = document.getElementById("44").value.trim();
+      const pHand = document.getElementById("55").value.trim();
+      const pKick = document.getElementById("66").value.trim();
+      const pRef = document.getElementById("77").value.trim();
+      const pSpee = document.getElementById("88").value.trim();
+      const pPositioning = document.getElementById("99").value.trim();
+      let allInputs = document.querySelectorAll("input");
+        // FORM VALIDATION
+        if(isNaN(parseInt(pScore))|| parseInt(pScore) < 0 ||parseInt(pScore) > 99 && isNaN(parseInt(pDiv))|| parseInt(pDiv) < 0 ||parseInt(pDiv) > 99 && isNaN(parseInt(pHand))|| parseInt(pHand) < 0 ||parseInt(pHand) > 99 && isNaN(parseInt(pKick))|| parseInt(pKick) < 0 ||parseInt(pKick) > 99 && isNaN(parseInt(pKick))|| parseInt(pKick) < 0 ||parseInt(pKick) > 99  && isNaN(parseInt(pRef))|| parseInt(pRef) < 0 ||parseInt(pRef) > 99 && isNaN(parseInt(pPositioning))|| parseInt(pPositioning) < 0 ||parseInt(pPositioning) > 99 && isNaN(parseInt(pSpee))|| parseInt(pSpee) < 0 ||parseInt(pSpee) > 99 ){
+          alert("tous les champs doivent être corrects et remplis");
+          return;
+        } 
+        if (pName == ""){
+          alert("Le nom de joueur est obligatoire");      
+          return;
+        }
+      e.preventDefault();
+        // set data to a variable 
+      allPlayers.push({
+        player_name : pName,
+         player_pos: pPos, 
+         player_photo: pPho, 
+         player_score: pScore, 
+         player_diving: pDiv, 
+         player_handling: pHand, 
+         player_kicking: pKick, 
+         player_reflex: pRef, 
+         player_speed: pSpee,
+         player_positioning: pPositioning, 
+      })
+      alert("Le joueur a ete ajoutee avec succes")
+      // empty the inputs after submiting
+      allInputs.forEach(input =>{
+        input.value = "";
+      })
+      // save to local storage
+      localStorage.setItem("allPlayers",JSON.stringify(allPlayers)); 
+      })
+    }
   }
-})
+}
 }
 // show players cards
 function showPlayers(){
@@ -285,8 +286,7 @@ allPlayers.forEach(play=>{
 })
 }
 // edit & remove player function
-function editRemove(){
-  let editPlayer = document.querySelectorAll(".edit-card");
+function remove(){
   let deletePlayer = document.querySelectorAll(".delete");
   // delete card 
   deletePlayer.forEach((del,i)=>{
@@ -296,18 +296,144 @@ function editRemove(){
       localStorage.setItem("allPlayers",JSON.stringify(allPlayers));
     })
   })
-  // edit card 
-editPlayer.forEach((edit,i)=>{
-  edit.addEventListener("click",()=>{
-    
-  })
-})
 }
-// call add player func 
-addPlayer();
+function edit(index){
+  // call edit
+  edited();
+  // check if the player is goal keeper
+theSelect.addEventListener("change",edited)
+function edited(){
+  {
+    // not gk case
+    if (theSelect.value != "GK"){
+      pForm.classList.remove("hide")
+      gkForm.classList.add("hide")
+      pForm.addEventListener("submit",(e)=>{
+        // get all data
+      const pPos = document.getElementById("f-pos").value.trim();
+      const pName = document.getElementById("1").value.trim().toUpperCase();
+      const pPho = document.getElementById("2").value.trim();
+      const pScore = document.getElementById("3").value.trim();
+      const pPace = document.getElementById("4").value.trim();
+      const pShoo = document.getElementById("5").value.trim();
+      const pPass = document.getElementById("6").value.trim();
+      const pDri = document.getElementById("7").value.trim();
+      const pDef = document.getElementById("8").value.trim();
+      const pPhy = document.getElementById("9").value.trim();
+      let allInputs = document.querySelectorAll("input");
+        // FORM VALIDATION
+        if(isNaN(parseInt(pScore))|| parseInt(pScore) < 0 ||parseInt(pScore) > 99 && isNaN(parseInt(pPace))|| parseInt(pPace) < 0 ||parseInt(pPace) > 99 && isNaN(parseInt(pShoo))|| parseInt(pShoo) < 0 ||parseInt(pShoo) > 99 && isNaN(parseInt(pPass))|| parseInt(pPass) < 0 ||parseInt(pPass) > 99 && isNaN(parseInt(pPass))|| parseInt(pPass) < 0 ||parseInt(pPass) > 99  && isNaN(parseInt(pDri))|| parseInt(pDri) < 0 ||parseInt(pDri) > 99 && isNaN(parseInt(pPhy))|| parseInt(pPhy) < 0 ||parseInt(pPhy) > 99 && isNaN(parseInt(pDef))|| parseInt(pDef) < 0 ||parseInt(pDef) > 99 ){
+          alert("tous les champs doivent être corrects et remplis");
+          e.preventDefault()
+          return;
+        } 
+        if (pName == ""){
+          alert("Le nom de joueur est obligatoire");
+          e.preventDefault()
+      
+          return;
+        }
+      e.preventDefault();
+        // set data to a variable 
+        allPlayers[index].player_name = pName;
+         allPlayers[index].player_pos= pPos; 
+         allPlayers[index].player_photo= pPho; 
+         allPlayers[index].player_score= pScore; 
+         allPlayers[index].player_pace= pPace; 
+         allPlayers[index].player_shooting= pShoo; 
+         allPlayers[index].player_passing= pPass; 
+         allPlayers[index].player_dribling= pDri; 
+         allPlayers[index].player_deffending= pDef;
+         allPlayers[index].player_physique= pPhy; 
+      alert("Le joueur a ete modifier avec succes")
+      // empty the inputs after submiting
+      allInputs.forEach(input =>{
+        input.value = "";
+      })
+      // save to local storage
+      localStorage.setItem("allPlayers",JSON.stringify(allPlayers)); 
+      })
+    } else {
+      pForm.classList.add("hide")
+      gkForm.classList.remove("hide")
+      gkForm.addEventListener("submit",(e)=>{
+        // get all data
+      const pPos = document.getElementById("f-pos").value.trim();
+      const pName = document.getElementById("11").value.trim().toUpperCase();
+      const pPho = document.getElementById("22").value.trim();
+      const pScore = document.getElementById("33").value.trim();
+      const pDiv = document.getElementById("44").value.trim();
+      const pHand = document.getElementById("55").value.trim();
+      const pKick = document.getElementById("66").value.trim();
+      const pRef = document.getElementById("77").value.trim();
+      const pSpee = document.getElementById("88").value.trim();
+      const pPositioning = document.getElementById("99").value.trim();
+      let allInputs = document.querySelectorAll("input");
+        // FORM VALIDATION
+        if(isNaN(parseInt(pScore))|| parseInt(pScore) < 0 ||parseInt(pScore) > 99 && isNaN(parseInt(pDiv))|| parseInt(pDiv) < 0 ||parseInt(pDiv) > 99 && isNaN(parseInt(pHand))|| parseInt(pHand) < 0 ||parseInt(pHand) > 99 && isNaN(parseInt(pKick))|| parseInt(pKick) < 0 ||parseInt(pKick) > 99 && isNaN(parseInt(pKick))|| parseInt(pKick) < 0 ||parseInt(pKick) > 99  && isNaN(parseInt(pRef))|| parseInt(pRef) < 0 ||parseInt(pRef) > 99 && isNaN(parseInt(pPositioning))|| parseInt(pPositioning) < 0 ||parseInt(pPositioning) > 99 && isNaN(parseInt(pSpee))|| parseInt(pSpee) < 0 ||parseInt(pSpee) > 99 ){
+          alert("tous les champs doivent être corrects et remplis");
+          e.preventDefault()
+          return;
+        } 
+        if (pName == ""){
+          alert("Le nom de joueur est obligatoire");
+          e.preventDefault()
+      
+          return;
+        }
+      e.preventDefault();
+        // set data to a variable 
+        allPlayers[index].player_name = pName;
+         allPlayers[index].player_pos= pPos; 
+         allPlayers[index].player_photo= pPho; 
+         allPlayers[index].player_score= pScore; 
+         allPlayers[index].player_diving= pDiv; 
+         allPlayers[index].player_handling= pHand; 
+         allPlayers[index].player_kicking= pKick; 
+         allPlayers[index].player_reflex= pRef; 
+         allPlayers[index].player_speed= pSpee;
+         allPlayers[index].player_positioning= pPositioning; 
+      alert("Le joueur a ete modifier avec succes")
+      // empty the inputs after submiting
+      allInputs.forEach(input =>{
+        input.value = "";
+      })
+      // save to local storage
+      localStorage.setItem("allPlayers",JSON.stringify(allPlayers)); 
+      })
+    }
+  }
+}
+}
+
 // call chow players function 
 showPlayers()
-editRemove();
+// delete player 
+remove();
+// edit player
+document.querySelectorAll(".edit-card").forEach((card,i)=>{
+  card.addEventListener("click",()=>{
+    // show model 
+      document.querySelector(".form-title").innerHTML = "Modifier le joueur";
+      document.querySelector(".action").innerHTML = "Modifier";
+      document.querySelector(".form-adding").classList.remove("hide");
+      edit(i);
+    console.log(document.querySelector(".form-adding"))
+    // hide model 
+    document.querySelector(".add-p").addEventListener("click",()=>{
+      document.querySelector(".form-adding").classList.add("hide");
+
+})
+  })
+})
+
+// formations part
+
+let formations = [
+  {
+    formation: ""
+  }
+]
 /*
 GK (Goalkeeper)
 RB (Right Back)

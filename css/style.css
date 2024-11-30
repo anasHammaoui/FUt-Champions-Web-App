@@ -263,6 +263,7 @@ th,td {margin: 0;padding: 0;}
     gap: 20px;
     align-items: center;
     padding:20px 60px;
+    z-index:10
 }
 .out{
     color: #fff;
@@ -425,6 +426,7 @@ form.hide{display: none;}
     right: 0;
     top: 0;
     min-height: 100vh;
+    z-index: 5;
 }
 .view-cards i {
     padding: 40px 15px;
