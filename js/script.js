@@ -432,7 +432,6 @@ document.querySelectorAll(".edit-card").forEach((card,i)=>{
 })
 
 // formations part
-
 let formations = [
   {
     formation: "4-4-2",
@@ -449,10 +448,9 @@ let formations = [
     goal: 1,
   }
 ];
-let formationRow = document.querySelectorAll(".row");
-  for (let front = 0; front < formations.from; front++){
-    formationRow.innerHTML += `
-       <!-- player -->
+let formationRow = document.querySelectorAll("#row");
+let playerCard = `
+     <!-- player -->
           <div class="player">
             <!-- text part for small screens -->
              <div class="player-text">
@@ -496,7 +494,42 @@ let formationRow = document.querySelectorAll(".row");
             </div>
           </div>
     `
+console.log(formationRow);
+// print the formation function
+function checkFormation(formaa){
+  formations.forEach((forma,i)=>{
+   if (forma.formation == formaa){
+    // front players
+    for (let front = 0; front < forma.front; front++){
+      formationRow[0].innerHTML += playerCard;
+    }
+    // middle players
+    for (let middle = 0; middle < forma.middle; middle++){
+      formationRow[1].innerHTML += playerCard;
+    }
+    // last players
+    for (let last = 0; last < forma.last; last++){
+      formationRow[2].innerHTML += playerCard;
+    }
+   }
+  })
+}
+// call print formation function
+let formaSelect = document.querySelector("#forma");
+checkFormation("4-4-2")
+formaSelect.addEventListener("change",()=>{
+  if (formaSelect.value == "4-4-2"){
+    formationRow.forEach(forma=>{
+      forma.innerHTML = "";
+    })
+    checkFormation("4-4-2")
+  } else if (formaSelect.value == "4-3-3"){
+    formationRow.forEach(forma=>{
+      forma.innerHTML = "";
+    })
+    checkFormation("4-3-3");
   }
+})
 /*
 GK (Goalkeeper)
 RB (Right Back)
