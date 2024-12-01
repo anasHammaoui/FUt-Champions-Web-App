@@ -13,82 +13,7 @@
 </head>
 <body class="body">
     <main>
-        <!-- add player -->
-        <div class="form-adding hide">
-            <i class="fa-solid fa-xmark add-p out"></i>
-            <!-- Form part -->
-            <div class="form-part">
-              <h1 class="form-title">Ajouter Un Joueur</h1>
-              <select name="form-position" style="margin-bottom: 10px;" id="f-pos">
-                <option value="RB">RB</option>
-                <option value="GK">GK</option>
-                <option value="CB">CB</option>
-                <option value="CB">CB</option>
-                <option value="LB">LB</option>
-                <option value="CDM">CDM</option>
-                <option value="CM">CM</option>
-                <option value="CM">CM</option>
-                <option value="RW">RW</option>
-                <option value="LW">LW</option>
-                <option value="ST">ST</option>
-              </select>
-              <!-- other players -->
-              <form id="theForm " class="other">
-                <div class="form-row">
-                  <input type="text" placeholder="Nom de joueur" id="1" name="name">
-                </div>
-                <div class="form-row">
-                  <input type="text" placeholder="Image URL" id="2" name="photo">
-                  <input type="text" placeholder="Score" id="3" name="score">
-                </div>
-                <div class="form-row">
-                  <input type="text" placeholder="Pace" id="4" name="pace">
-                  <input type="text" placeholder="Shooting" id="5" name="shooting">
-                </div>
-                <div class="form-row">
-                  <input type="text" placeholder="Passing" id="6" name="passing">
-                  <input type="text" placeholder="Dribbling" id="7" name="dribb">
-                </div>
-                <div class="form-row">
-                  <input type="text" placeholder="Defending" id="8" name="def">
-                  <input type="text" placeholder="Physical" id="9" name="phy">
-                </div>
-                <button class="action" type="submit">Ajouter</button>
-              </form>
-              <!-- gk form -->
-              <form id="theForm" class="gk-form hide">
-                <div class="form-row">
-                  <input type="text" placeholder="Nom de joueur" id="11" name="name">
-                </div>
-                <div class="form-row">
-                  <input type="text" placeholder="Image URL" id="22" name="photo">
-                  <input type="text" placeholder="Score" id="33" name="score">
-                </div>
-                <div class="form-row">
-                  <input type="text" placeholder="Diving" id="44" name="diving">
-                  <input type="text" placeholder="Handling" id="55" name="Handling">
-                </div>
-                <div class="form-row">
-                  <input type="text" placeholder="Kicking" id="66" name="Kicking">
-                  <input type="text" placeholder="Reflexxes" id="77" name="Reflexxes">
-                </div>
-                <div class="form-row">
-                  <input type="text" placeholder="Speed" id="88" name="Speed">
-                  <input type="text" placeholder="Positionning" id="99" name="Positionning">
-                </div>
-                <button type="submit">Ajouter</button>
-              </form>
-            </div>
-          </div>
-          <!-- view cards -->
 
-          <div class="form-adding view-cards hide">
-            <i class="fa-solid fa-xmark out-card out"></i>
-           <!-- cards -->
-            <div class="all-cards">
-               <!-- card -->
-            </div>
-          </div>
            <!-- home page -->
         <div class="players">
             <h3 class="title">FUT-Champ-Ultimate-Team</h3>
@@ -127,6 +52,28 @@
             </div>
         </div>  
         <div class="stad">
+          <svg id="pitch-svg" style="object-fit: cover;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 904 650"
+            fill="none" class="w-full max-w-[120vh]">
+            <g stroke="#696969" fill="#404040">
+                <path d="M903 649.439H1L120.311 1H783.788L903 649.439Z" stroke-miterlimit="10" />
+                <path
+                    d="M550.992 275.425C553.194 321.703 508.921 360.763 452.019 360.763C395.117 360.763 350.853 321.703 353.062 275.425C355.172 231.123 399.452 196.564 452.035 196.564C504.618 196.564 548.89 231.115 550.992 275.425Z"
+                    stroke-miterlimit="10" />
+                <path d="M69.8843 275.038H834.169" stroke-miterlimit="10" />
+                <path
+                    d="M541.288 71.4008C543.078 109.009 503.086 140.632 451.897 140.632C400.708 140.632 360.732 109.017 362.53 71.4008C364.259 35.2446 404.251 6.93591 451.92 6.93591C499.582 6.93591 539.574 35.2446 541.288 71.4008Z"
+                    stroke-miterlimit="10" />
+                <path d="M269.125 96.4996H640.093L630.663 1.1532H278.312L269.125 96.4996Z" stroke-miterlimit="10" />
+                <path d="M371.922 54.7625H532.542L530.219 1.13715H374.245L371.922 54.7625Z" stroke-miterlimit="10" />
+                <path
+                    d="M343.464 530.333C346.061 474.554 395.78 431.261 454.624 431.261C513.469 431.261 563.279 474.554 565.998 530.333C568.855 588.91 519.151 638.6 454.853 638.6C390.554 638.6 340.737 588.91 343.471 530.333H343.464Z"
+                    stroke-miterlimit="10" />
+                <path d="M675.597 492.572H227.26L211.911 649.198H690.84L675.597 492.572Z" stroke-miterlimit="10" />
+                <path d="M556.362 556.642H352.353L348.43 649.238H560.453L556.362 556.642Z" stroke-miterlimit="10" />
+            </g>
+            <use href="#futbin-logo" y="613" x="18" />
+            <use href="#futbin-logo" y="613" x="802" />
+            </svg>
        <div class="team">
           
         <div class="row" id="row">
@@ -138,54 +85,89 @@
         <div class="row" id="row">
           </div>
           <div class="goal">
-          <div class="player">
-            <!-- player text -->
-            <div class="player-text">
-              <div class="card-header">
-                <span class="rating">90</span>
-                <span class="position">CF</span>
-              </div>
-              <div class="player-name">Messi</div>
-              <div class="player-stats">
-                <div>PAC <span>80</span></div>
-                <div>SHO <span>87</span></div>
-                <div>PAS <span>90</span></div>
-                <div>DRI <span>94</span></div>
-                <div>DEF <span>33</span></div>
-                <div>PHY <span>64</span></div>
-              </div>
-             </div>
-                  <!-- card part -->
-                  <div class="player-card">
-                    <div class="card-container">
-                      <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
-                      <div class="card-content">
-                        <div class="card-header">
-                          <span class="rating">90</span>
-                          <span class="position">CF</span>
-                        </div>
-                        <div class="badge-container">
-                          <img class="badge" src="https://cdn.sofifa.net/players/158/023/25_120.png " alt="Badge">
-                        </div>
-                        <div class="player-name">Messi</div>
-                        <div class="player-stats">
-                          <div>PAC <span>80</span></div>
-                          <div>SHO <span>87</span></div>
-                          <div>PAS <span>90</span></div>
-                          <div>DRI <span>94</span></div>
-                          <div>DEF <span>33</span></div>
-                          <div>PHY <span>64</span></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-          </div>
+          
 
           </div>
        </div>
         </div>
 
     </main>
+            <!-- add player -->
+            <div class="form-adding hide">
+              <i class="fa-solid fa-xmark add-p out"></i>
+              <!-- Form part -->
+              <div class="form-part">
+                <h1 class="form-title">Ajouter Un Joueur</h1>
+                <select name="form-position" style="margin-bottom: 10px;" id="f-pos">
+                  <option value="RB">RB</option>
+                  <option value="GK">GK</option>
+                  <option value="CB">CB</option>
+                  <option value="CB">CB</option>
+                  <option value="LB">LB</option>
+                  <option value="CDM">CDM</option>
+                  <option value="CM">CM</option>
+                  <option value="CM">CM</option>
+                  <option value="RW">RW</option>
+                  <option value="LW">LW</option>
+                  <option value="ST">ST</option>
+                </select>
+                <!-- other players -->
+                <form id="theForm " class="other">
+                  <div class="form-row">
+                    <input type="text" placeholder="Nom de joueur" id="1" name="name">
+                  </div>
+                  <div class="form-row">
+                    <input type="text" placeholder="Image URL" id="2" name="photo">
+                    <input type="text" placeholder="Score" id="3" name="score">
+                  </div>
+                  <div class="form-row">
+                    <input type="text" placeholder="Pace" id="4" name="pace">
+                    <input type="text" placeholder="Shooting" id="5" name="shooting">
+                  </div>
+                  <div class="form-row">
+                    <input type="text" placeholder="Passing" id="6" name="passing">
+                    <input type="text" placeholder="Dribbling" id="7" name="dribb">
+                  </div>
+                  <div class="form-row">
+                    <input type="text" placeholder="Defending" id="8" name="def">
+                    <input type="text" placeholder="Physical" id="9" name="phy">
+                  </div>
+                  <button class="action" type="submit">Ajouter</button>
+                </form>
+                <!-- gk form -->
+                <form id="theForm" class="gk-form hide">
+                  <div class="form-row">
+                    <input type="text" placeholder="Nom de joueur" id="11" name="name">
+                  </div>
+                  <div class="form-row">
+                    <input type="text" placeholder="Image URL" id="22" name="photo">
+                    <input type="text" placeholder="Score" id="33" name="score">
+                  </div>
+                  <div class="form-row">
+                    <input type="text" placeholder="Diving" id="44" name="diving">
+                    <input type="text" placeholder="Handling" id="55" name="Handling">
+                  </div>
+                  <div class="form-row">
+                    <input type="text" placeholder="Kicking" id="66" name="Kicking">
+                    <input type="text" placeholder="Reflexxes" id="77" name="Reflexxes">
+                  </div>
+                  <div class="form-row">
+                    <input type="text" placeholder="Speed" id="88" name="Speed">
+                    <input type="text" placeholder="Positionning" id="99" name="Positionning">
+                  </div>
+                  <button type="submit">Ajouter</button>
+                </form>
+              </div>
+            </div>
+            <!-- view cards -->
+  
+            <div class="form-adding view-cards hide">
+              <i class="fa-solid fa-xmark out-card out"></i>
+             <!-- cards -->
+              <div class="all-cards">
+                 <!-- card -->
+              </div>
+            </div>
     <script src="js/script.js"></script>
 </body>
 </html>

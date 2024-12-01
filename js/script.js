@@ -26,80 +26,6 @@ document.querySelector(".out-card").addEventListener("click",()=>{
 })
 // affichr joueur cards 
 let showCards = document.querySelector(".all-cards");
-// showPlayers();
-// let data;
-// async function showPlayers(){
-//     try {
-//         let response = await fetch("js/players.json");
-//         if (!response.ok){
-//             throw new Error("error to fetch");
-//         }
-//          data = await response.json();
-//          localStorage.setItem("finalPlayers",JSON.stringify(data));
-//         // show players in cards
-//           data.players.forEach((play,i)=>{
-//            if (play.position != "GK"){
-//             showCards.innerHTML += `
-//             <!-- card -->
-//            <div class="player-card">
-//                <div class="card-container">
-//                  <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
-//                  <div class="card-content">
-//                    <div class="card-header">
-//                      <span class="rating">${play.rating}</span>
-//                      <span class="position">${play.position}</span>
-//                    </div>
-//                    <div class="badge-container">
-//                      <img class="badge" src="${play.photo}" alt="Badge">
-//                    </div>
-//                    <div class="player-name">${play.name}</div>
-//                    <div class="player-stats">
-//                      <div>PAC <span>${play.pace}</span></div>
-//                      <div>SHO <span>${play.shooting}</span></div>
-//                      <div>PAS <span>${play.passing}</span></div>
-//                      <div>DRI <span>${play.dribbling}</span></div>
-//                      <div>DEF <span>${play.defending}</span></div>
-//                      <div>PHY <span>${play.physical}</span></div>
-//                    </div>
-//                  </div>
-//                </div>
-//              </div>
-//        `
-//            } else {
-//             showCards.innerHTML += `
-//             <!-- card -->
-//            <div class="player-card">
-//                <div class="card-container">
-//                  <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
-//                  <div class="card-content">
-//                    <div class="card-header">
-//                      <span class="rating">${play.rating}</span>
-//                      <span class="position">${play.position}</span>
-//                    </div>
-//                    <div class="badge-container">
-//                      <img class="badge" src="${play.photo}" alt="Badge">
-//                    </div>
-//                    <div class="player-name">${play.name}</div>
-//                    <div class="player-stats">
-//                    <div>DIV <span>${play.diving}</span></div>
-//                    <div>HAN <span>${play.handling}</span></div>
-//                    <div>KIC <span>${play.kicking}</span></div>
-//                    <div>REF <span>${play.reflexes}</span></div>
-//                    <div>SPE <span>${play.speed}</span></div>
-//                      <div>POS <span>${play.positioning}</span></div>
-//                    </div>
-//                  </div>
-//                </div>
-//              </div>
-//        `
-//            }
-//         })
-//         // add player
-//     } catch (error){
-//         console.error(error)
-//     }
-// }
-
 // set up variables
 let gkForm = document.querySelector(".gk-form");
 let pForm = document.querySelector(".other");
@@ -439,6 +365,14 @@ let formations = [
     middle: 4,
     last: 4,
     goal: 1,
+    technique: 
+      {
+        front: ["ST", "ST"],
+        middle: ["LM", "CM", "CM", "RM"],
+        last: ["LB", "CB", "CB", "RB"],
+        goal: ["GK"]
+      }
+    
   },
   {
     formation: "4-3-3",
@@ -446,71 +380,210 @@ let formations = [
     middle: 3,
     last: 4,
     goal: 1,
+    technique: 
+    {
+      front: ["LW", "ST", "RW"],
+      middle: ["CM", "CM", "CM"],
+      last: ["LB", "CB", "CB", "RB"],
+      goal:"GK"
+    }
   }
 ];
 let formationRow = document.querySelectorAll("#row");
-let playerCard = `
-     <!-- player -->
-          <div class="player">
-            <!-- text part for small screens -->
-             <div class="player-text">
-              <div class="card-header">
-                <span class="rating">90</span>
-                <span class="position">CF</span>
-              </div>
-              <div class="player-name">Messi</div>
-              <div class="player-stats">
-                <div>PAC <span>80</span></div>
-                <div>SHO <span>87</span></div>
-                <div>PAS <span>90</span></div>
-                <div>DRI <span>94</span></div>
-                <div>DEF <span>33</span></div>
-                <div>PHY <span>64</span></div>
-              </div>
-             </div>
-               <!-- card part for large screens -->
-          <div class="player-card">
-              <div class="card-container">
-                <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
-                <div class="card-content">
-                  <div class="card-header">
-                    <span class="rating">90</span>
-                    <span class="position">CF</span>
-                  </div>
-                  <div class="badge-container">
-                    <img class="badge" src="https://cdn.sofifa.net/players/158/023/25_120.png " alt="Badge">
-                  </div>
-                  <div class="player-name">Messi</div>
-                  <div class="player-stats">
-                    <div>PAC <span>80</span></div>
-                    <div>SHO <span>87</span></div>
-                    <div>PAS <span>90</span></div>
-                    <div>DRI <span>94</span></div>
-                    <div>DEF <span>33</span></div>
-                    <div>PHY <span>64</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-    `
 console.log(formationRow);
 // print the formation function
 function checkFormation(formaa){
   formations.forEach((forma,i)=>{
    if (forma.formation == formaa){
     // front players
-    for (let front = 0; front < forma.front; front++){
-      formationRow[0].innerHTML += playerCard;
-    }
-    // middle players
-    for (let middle = 0; middle < forma.middle; middle++){
-      formationRow[1].innerHTML += playerCard;
-    }
+    forma.technique.front.forEach(fr=>{
+      formationRow[0].innerHTML += `
+          <!-- player -->
+         <div class="player" data-position="${fr}">
+    <!-- text part for small screens -->
+    <div class="player-text">
+        <div class="card-header">
+            <span class="rating"></span>
+            <span class="position"></span>
+        </div>
+        <div class="player-name"></div>
+        <div class="player-stats">
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+        </div>
+    </div>
+    <!-- card part for large screens -->
+    <div class="player-card">
+        <div class="card-container">
+            <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="rating"></span>
+                    <span class="position"></span>
+                </div>
+                <div class="badge-container">
+                </div>
+                <div class="player-name"></div>
+                <div class="player-stats">
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      `
+    })
+     // middle
+     forma.technique.middle.forEach(mid=>{
+      formationRow[1].innerHTML += `
+          <!-- player -->
+          <div class="player" data-position="${mid}">
+    <!-- text part for small screens -->
+    <div class="player-text">
+        <div class="card-header">
+            <span class="rating"></span>
+            <span class="position"></span>
+        </div>
+        <div class="player-name"></div>
+        <div class="player-stats">
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+        </div>
+    </div>
+    <!-- card part for large screens -->
+    <div class="player-card">
+        <div class="card-container">
+            <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="rating"></span>
+                    <span class="position"></span>
+                </div>
+                <div class="badge-container">
+                </div>
+                <div class="player-name"></div>
+                <div class="player-stats">
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      `
+    })
     // last players
-    for (let last = 0; last < forma.last; last++){
-      formationRow[2].innerHTML += playerCard;
-    }
+      forma.technique.last.forEach(la=>{
+        formationRow[2].innerHTML += `
+            <!-- player -->
+           <div class="player" data-position="${la}">
+    <!-- text part for small screens -->
+    <div class="player-text">
+        <div class="card-header">
+            <span class="rating"></span>
+            <span class="position"></span>
+        </div>
+        <div class="player-name"></div>
+        <div class="player-stats">
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+        </div>
+    </div>
+    <!-- card part for large screens -->
+    <div class="player-card">
+        <div class="card-container">
+            <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="rating"></span>
+                    <span class="position"></span>
+                </div>
+                <div class="badge-container">
+                </div>
+                <div class="player-name"></div>
+                <div class="player-stats">
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        `
+      })
+      // goal keeper
+      document.querySelector(".goal").innerHTML = `
+       <div class="player">
+    <!-- player text -->
+    <div class="player-text" data-position="${forma.technique.goal}">
+        <div class="card-header">
+            <span class="rating"></span>
+            <span class="position"></span>
+        </div>
+        <div class="player-name"></div>
+        <div class="player-stats">
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+            <div><span></span></div>
+        </div>
+    </div>
+    <!-- card part -->
+    <div class="player-card">
+        <div class="card-container">
+            <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="rating"></span>
+                    <span class="position"></span>
+                </div>
+                <div class="badge-container">
+                </div>
+                <div class="player-name"></div>
+                <div class="player-stats">
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                    <div><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+      `
    }
   })
 }
