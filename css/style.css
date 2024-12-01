@@ -191,11 +191,7 @@ th,td {margin: 0;padding: 0;}
     .player-text{
         display: block;
     }
-    .player{width:10%}
-    .goal{
-        margin-bottom: 20px;
-        width: 10%;
-    }
+    
 }
 .player-text .card-header{
     display: flex
@@ -435,4 +431,28 @@ z-index: 10;
 }
 .delete{
     background-color:#E74C3C;
+}
+
+/* pitch card  */
+main .player .card-header{
+    margin-top: 0px;
+}
+main .player .card-content{
+    margin-left: 0;
+}
+main .player .player-name{
+    font-size: 8px;
+    margin-left: auto;
+}
+main .player .card-content .rating, main .player .card-content .position{
+    font-size:10px;
+    margin-left:10px;
+}
+main .player .card-content .badge-container img{
+    width: 68%;
+    margin-left: 12%;
+    top: -8px;
+    left: 8px;
+    position: relative;
+    margin-top:-13px
 }

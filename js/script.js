@@ -33,10 +33,12 @@ let allPlayers= JSON.parse(localStorage.getItem("allPlayers")) || [];
 let theSelect = document.getElementById("f-pos");
 // add players
 function addPlayer(){
-  // call the function 
-  added();
+  let isAdded = false;
 // check if the player is goal keeper
-theSelect.addEventListener("change",added);
+theSelect.addEventListener("change",()=>{
+  added();
+  isAdded = true
+});
 function added(){
   {
     // not gk case
@@ -137,6 +139,8 @@ function added(){
     }
   }
 }
+added();
+return;
 }
 // show players cards
 function showPlayers(){
@@ -228,8 +232,6 @@ function remove(){
   })
 }
 function edit(index){
-  // call edit
-  edited();
   // check if the player is goal keeper
 theSelect.addEventListener("change",edited)
 function edited(){
@@ -334,6 +336,7 @@ function edited(){
     }
   }
 }
+edited();
 }
 
 // call chow players function 
@@ -399,25 +402,9 @@ function checkFormation(formaa){
     forma.technique.front.forEach(fr=>{
       formationRow[0].innerHTML += `
           <!-- player -->
-         <div class="player" data-position="${fr}">
-    <!-- text part for small screens -->
-    <div class="player-text">
-        <div class="card-header">
-            <span class="rating"></span>
-            <span class="position"></span>
-        </div>
-        <div class="player-name"></div>
-        <div class="player-stats">
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-        </div>
-    </div>
+         <div class="player" >
     <!-- card part for large screens -->
-    <div class="player-card">
+    <div class="player-card" data-position="${fr}">
         <div class="card-container">
             <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
             <div class="card-content">
@@ -447,25 +434,9 @@ function checkFormation(formaa){
      forma.technique.middle.forEach(mid=>{
       formationRow[1].innerHTML += `
           <!-- player -->
-          <div class="player" data-position="${mid}">
-    <!-- text part for small screens -->
-    <div class="player-text">
-        <div class="card-header">
-            <span class="rating"></span>
-            <span class="position"></span>
-        </div>
-        <div class="player-name"></div>
-        <div class="player-stats">
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-        </div>
-    </div>
+          <div class="player">
     <!-- card part for large screens -->
-    <div class="player-card">
+    <div class="player-card" data-position="${mid}">
         <div class="card-container">
             <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
             <div class="card-content">
@@ -476,14 +447,7 @@ function checkFormation(formaa){
                 <div class="badge-container">
                 </div>
                 <div class="player-name"></div>
-                <div class="player-stats">
-                    <div><span></span></div>
-                    <div><span></span></div>
-                    <div><span></span></div>
-                    <div><span></span></div>
-                    <div><span></span></div>
-                    <div><span></span></div>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -495,25 +459,9 @@ function checkFormation(formaa){
       forma.technique.last.forEach(la=>{
         formationRow[2].innerHTML += `
             <!-- player -->
-           <div class="player" data-position="${la}">
-    <!-- text part for small screens -->
-    <div class="player-text">
-        <div class="card-header">
-            <span class="rating"></span>
-            <span class="position"></span>
-        </div>
-        <div class="player-name"></div>
-        <div class="player-stats">
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-        </div>
-    </div>
+           <div class="player" >
     <!-- card part for large screens -->
-    <div class="player-card">
+    <div class="player-card" data-position="${la}">
         <div class="card-container">
             <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
             <div class="card-content">
@@ -524,14 +472,6 @@ function checkFormation(formaa){
                 <div class="badge-container">
                 </div>
                 <div class="player-name"></div>
-                <div class="player-stats">
-                    <div><span></span></div>
-                    <div><span></span></div>
-                    <div><span></span></div>
-                    <div><span></span></div>
-                    <div><span></span></div>
-                    <div><span></span></div>
-                </div>
             </div>
         </div>
     </div>
@@ -542,24 +482,8 @@ function checkFormation(formaa){
       // goal keeper
       document.querySelector(".goal").innerHTML = `
        <div class="player">
-    <!-- player text -->
-    <div class="player-text" data-position="${forma.technique.goal}">
-        <div class="card-header">
-            <span class="rating"></span>
-            <span class="position"></span>
-        </div>
-        <div class="player-name"></div>
-        <div class="player-stats">
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-            <div><span></span></div>
-        </div>
-    </div>
     <!-- card part -->
-    <div class="player-card">
+    <div class="player-card" data-position="${forma.technique.goal}">
         <div class="card-container">
             <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
             <div class="card-content">
@@ -602,6 +526,40 @@ formaSelect.addEventListener("change",()=>{
     })
     checkFormation("4-3-3");
   }
+})
+
+// let every player in his place
+let pitchPlayers = document.querySelectorAll('[data-position]');
+let theIndexPitch;
+pitchPlayers.forEach((pitch,index) =>{
+  pitch.addEventListener("click",()=>{
+theIndexPitch = index;
+    document.querySelector(".view-cards").classList.remove("hide");
+    document.querySelectorAll(".view-cards .card-container").forEach((player,i)=>{
+      
+      player.addEventListener("click",()=>{
+        console.log(i);
+        pitchPlayers[theIndexPitch].innerHTML = `
+           <div class="card-container">
+            <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="rating">${allPlayers[i].player_score}</span>
+                    <span class="position">${allPlayers[i].player_pos}</span>
+                </div>
+                <div class="badge-container">
+                <img src="${allPlayers[i].player_photo}" alt="image">
+                </div>
+                <div class="player-name">${allPlayers[i].player_name}</div>
+               
+            </div>
+        </div>
+        `
+    document.querySelector(".view-cards").classList.add("hide");
+        
+      })
+    })
+  })
 })
 /*
 GK (Goalkeeper)
