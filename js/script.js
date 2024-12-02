@@ -103,7 +103,8 @@ function addPlayer() {
       input.value = "";
     });
     // save to local storage
-    localStorage.setItem("allPlayers", JSON.stringify(allPlayers))
+    localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
+    return
   });
 
   // Event listener for goal keeper form submission
@@ -174,7 +175,8 @@ function addPlayer() {
       input.value = "";
     });
     // save to local storage
-    localStorage.setItem("allPlayers", JSON.stringify(allPlayers))
+    localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
+    return
   });
 }
 function edit(index) {
@@ -252,6 +254,7 @@ function edit(index) {
       // save to local storage
       localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
       isEdited = false;
+      return;
     }
   });
 
@@ -315,31 +318,10 @@ function edit(index) {
       // save to local storage
       localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
       isEdited = false;
+      return
     }
   });
-
-  edited();
 }
-
-// edit player
-document.querySelectorAll(".edit-card").forEach((card,i)=>{
-  card.addEventListener("click",()=>{
-    // show model 
-      document.querySelector(".form-title").innerHTML = "Modifier le joueur";
-      document.querySelectorAll(".action").forEach(act =>{
-        act.innerHTML = "Modifier";
-      })
-
-      document.querySelector(".form-adding").classList.remove("hide");
-      edit(i);
-  
-    // hide model 
-    document.querySelector(".add-p").addEventListener("click",()=>{
-      document.querySelector(".form-adding").classList.add("hide");
-
-})
-  })
-})
 showPlayers();
 // formations part
 let formations = [
@@ -522,6 +504,7 @@ dataGoal.forEach(dataGo =>{
 dataGo.addEventListener("click",showGoodPlayer(dataGoal))
 })
 showGoodPlayer(dataGoal);
+
 // select players in the pitch function 
 function showGoodPlayer(pitchPlayers){
 let theIndexPitch;
@@ -774,14 +757,17 @@ document.getElementById("effacer").addEventListener("click",()=>{
     rm.innerHTML = "";
   })
 })
-// show cards
+
+
+
+// show cards with all settings
 document.getElementById("show-btn").addEventListener("click",function (){
   if (allPlayers.length > 0){
     document.querySelector(".view-cards").classList.remove("hide");
     showPlayers();
+    // delete card 
     let deletePlayer = document.querySelectorAll(".delete");
-  // delete card 
-  deletePlayer.forEach((del,i)=>{
+  deletePlayer.forEach((del)=>{
     del.addEventListener("click",()=>{
       allPlayers.forEach((playDel,playI) =>{
         if (del.parentNode.parentNode.querySelector(".player-name").innerHTML == playDel.player_name){
@@ -792,6 +778,31 @@ document.getElementById("show-btn").addEventListener("click",function (){
       })
     })
   })
+  // edit card
+  let editPlayer = document.querySelectorAll(".edit-card");
+  editPlayer.forEach(ed =>{
+    ed.addEventListener("click",()=>{
+      allPlayers.forEach((aP, aI)=>{
+        if (ed.parentNode.parentNode.querySelector(".player-name").innerHTML == aP.player_name){
+          // show model 
+        document.querySelector(".form-title").innerHTML = "Modifier le joueur";
+        document.querySelectorAll(".action").forEach(act =>{
+          act.innerHTML = "Modifier";
+        })
+  
+        document.querySelector(".form-adding").classList.remove("hide");
+        edit(aI);
+    
+      // hide model 
+      document.querySelector(".add-p").addEventListener("click",()=>{
+        document.querySelector(".form-adding").classList.add("hide");
+  
+  })
+        }
+      })
+    })
+  })
+
   } else {
     alert("Il exist aucun joueur");
   }
