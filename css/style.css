@@ -215,7 +215,6 @@ main{
     border-radius: 15px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
     gap: 20px;
-    align-items: center;
     padding:20px 60px;
     z-index:10;
     overflow-y: auto;
@@ -278,13 +277,13 @@ main{
     color: #fff;
   }
 .form-adding select{
-    flex:1;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #444;
     color: #fff;
 }
+.center{align-items: center;}
   .form-adding  input:focus, .form-adding select{
     border: 2px solid #4DB6AC;
     outline: none;

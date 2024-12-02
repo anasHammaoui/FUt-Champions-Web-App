@@ -10,19 +10,7 @@ document.querySelector(".add-p").addEventListener("click",()=>{
     document.querySelector(".form-adding").classList.add("hide");
 
 })
-// show cards
-document.getElementById("show-btn").addEventListener("click",function (){
-  if (allPlayers.length > 0){
-    document.querySelector(".view-cards").classList.remove("hide");
-    showPlayers();
-  } else {
-    alert("Il exist aucun joueur");
-  }
-})
-document.querySelector(".out-card").addEventListener("click",()=>{
-    document.querySelector(".view-cards").classList.add("hide");
 
-})
 // affichr joueur cards 
 let showCards = document.querySelector(".all-cards");
 // set up variables
@@ -701,10 +689,13 @@ allPlayers.forEach((play,playIndex)=>{
   let isPlacement = false;
   // check if the player is in the pitch cards 
   pitchCards.forEach(pCard =>{{
-    if (play.player_name == pCard.querySelector(".player-name").innerText){
-      placed.push(playIndex);
-    
+    if (pCard.querySelector(".player-name") != null){
+      if (play.player_name == pCard.querySelector(".player-name").innerText){
+        placed.push(playIndex);
+      
+      }
     }
+
   }})
   // if the players is on the pitch turn isplacement to true 
   placed.forEach(placement =>{
@@ -795,5 +786,17 @@ document.getElementById("effacer").addEventListener("click",()=>{
   document.querySelectorAll(".pitch-remove").forEach(rm=>{
     rm.innerHTML = "";
   })
-  console.log(document.querySelectorAll("pitch-remove"))
+})
+// show cards
+document.getElementById("show-btn").addEventListener("click",function (){
+  if (allPlayers.length > 0){
+    document.querySelector(".view-cards").classList.remove("hide");
+    showPlayers();
+  } else {
+    alert("Il exist aucun joueur");
+  }
+})
+document.querySelector(".out-card").addEventListener("click",()=>{
+    document.querySelector(".view-cards").classList.add("hide");
+
 })
