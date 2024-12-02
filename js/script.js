@@ -559,6 +559,18 @@ let theIndexPitch;
       // empty the showing to add good players  
       document.querySelector(".all-cards").innerHTML = "";
       allPlayers.forEach((thePlayer) =>{
+        let inPitch = false;
+        // check if the player is already on the pitch to now show him again 
+        pitchPlayers.forEach(noRepeat=>{
+          
+          if (noRepeat.querySelector(".player-name") != null){
+if (noRepeat.querySelector(".player-name").innerHTML == thePlayer.player_name){
+            inPitch = true;
+          }
+          }
+        }) 
+        if (inPitch != true){
+          
         // show all good player for the clicked position 
         if (pitchPlayers[theIndexPitch].getAttribute("data-position") == thePlayer.player_pos){
           document.querySelector(".all-cards").innerHTML += `
@@ -635,7 +647,11 @@ if (pitchPlayers[theIndexPitch].getAttribute("data-goal") == thePlayer.player_po
   `
 }
   
-      })
+     
+        }
+
+          inPitch = false;
+       })
   
   document.querySelectorAll(".view-cards .card-container").forEach((player)=>{
         // print the selected player data in the selected card
