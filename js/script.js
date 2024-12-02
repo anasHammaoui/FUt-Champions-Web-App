@@ -5,7 +5,6 @@ document.getElementById("add-btn").addEventListener("click",function (){
     document.querySelector(".form-adding").classList.remove("hide");
     // call add player func 
 addPlayer();
-console.log(document.querySelector(".form-adding"))
 })
 document.querySelector(".add-p").addEventListener("click",()=>{
     document.querySelector(".form-adding").classList.add("hide");
@@ -19,7 +18,6 @@ document.getElementById("show-btn").addEventListener("click",function (){
   } else {
     alert("Il exist aucun joueur");
   }
-console.log(document.querySelector(".form-adding"))
 })
 document.querySelector(".out-card").addEventListener("click",()=>{
     document.querySelector(".view-cards").classList.add("hide");
@@ -197,7 +195,6 @@ function remove(){
   // delete card 
   deletePlayer.forEach((del,i)=>{
     del.addEventListener("click",()=>{
-      console.log(allPlayers[i]);
       allPlayers.splice(i,1);
       document.querySelectorAll(".player-card")[i].remove();
       localStorage.setItem("allPlayers",JSON.stringify(allPlayers));
@@ -360,7 +357,7 @@ document.querySelectorAll(".edit-card").forEach((card,i)=>{
 
       document.querySelector(".form-adding").classList.remove("hide");
       edit(i);
-    console.log(document.querySelector(".form-adding"))
+  
     // hide model 
     document.querySelector(".add-p").addEventListener("click",()=>{
       document.querySelector(".form-adding").classList.add("hide");
@@ -395,14 +392,13 @@ let formations = [
     technique: 
     {
       front: ["LW", "ST", "RW"],
-      middle: ["CM", "CM", "CM"],
-      last: ["LB", "CB", "CB", "RB"],
-      goal:"GK"
+       middle: ["LM", "CM", "RM"],
+        last: ["LB", "CB", "CB", "RB"],
+         goal: "GK"
     }
   }
 ];
 let formationRow = document.querySelectorAll("#row");
-console.log(formationRow);
 // print the formation function
 function checkFormation(formaa){
   formations.forEach((forma,i)=>{
@@ -641,17 +637,16 @@ if (pitchPlayers[theIndexPitch].getAttribute("data-goal") == thePlayer.player_po
   
       })
   
-  document.querySelectorAll(".view-cards .card-container").forEach((player,i)=>{
+  document.querySelectorAll(".view-cards .card-container").forEach((player)=>{
         // print the selected player data in the selected card
     player.addEventListener("click",()=>{
       allPlayers.forEach((playerPrint,indexPrint) =>{
         // print player by index 
         if (playerPrint.player_name == player.querySelector(".player-name").innerHTML){
-          console.log(i);
       pitchPlayers[theIndexPitch].innerHTML = `
          <div class="card-container">
-          <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
-          <div class="card-content">
+          <img class="card-background" src="img/badge_gold.webp"   alt="Card Background">
+          <div class="card-content  pitch-remove">
               <div class="card-header">
                   <span class="rating">${allPlayers[indexPrint].player_score}</span>
                   <span class="position">${allPlayers[indexPrint].player_pos}</span>
@@ -686,13 +681,13 @@ let pitchCards= document.querySelectorAll(".team .player");
   // Array to stock the printed players to not show them in view cards
   let placed = [];
 allPlayers.forEach((play,playIndex)=>{
-  console.log(placed);
+
   let isPlacement = false;
   // check if the player is in the pitch cards 
   pitchCards.forEach(pCard =>{{
     if (play.player_name == pCard.querySelector(".player-name").innerText){
       placed.push(playIndex);
-      console.log(placed);
+    
     }
   }})
   // if the players is on the pitch turn isplacement to true 
@@ -779,5 +774,10 @@ allPlayers.forEach((play,playIndex)=>{
 }
 
 
-
-
+// delete pitch cards content
+document.getElementById("effacer").addEventListener("click",()=>{
+  document.querySelectorAll(".pitch-remove").forEach(rm=>{
+    rm.innerHTML = "";
+  })
+  console.log(document.querySelectorAll("pitch-remove"))
+})

@@ -31,18 +31,18 @@ main{
     background-color: #1F1F1F;
     padding:20px 30px;
 }
-.add, .remove,.cards, .format{
+.add, .remove,.cards, .format,.effacer{
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
     align-items: center;
 }
 
-.add h4, .remove h4, .cards h4, .format h4{ 
+.add h4, .remove h4, .cards h4, .format h4,.effacer h4{ 
     color: #fff;
     font-size: 16px;
 }
-#add-btn, #remove-btn, #show-btn{
+#add-btn, #remove-btn, #show-btn, #effacer{
     cursor: pointer;
     width:120px;
     height: 25px;
@@ -55,12 +55,13 @@ main{
 #add-btn{
     background-color: #2ECC71;
 }
-#remove-btn{
+#effacer{
     background-color: #E74C3C;
 }
 #show-btn{
     background-color: #3c9ae7;
 }
+
 @media screen and (max-width:790px){
     .add, .format, .cards{
       flex-direction: column;
@@ -417,24 +418,38 @@ z-index: 10;
 
 /* pitch card  */
 main .player .card-header{
-    margin-top: 0px;
+    margin-top: 3%;
+    margin-left:10%
 }
 main .player .card-content{
     margin-left: 0;
 }
 main .player .player-name{
-    font-size: 8px;
+    font-size: 0.45em;
     margin-left: auto;
 }
 main .player .card-content .rating, main .player .card-content .position{
-    font-size:10px;
+    font-size:8px;
     margin-left:10px;
 }
 main .player .card-content .badge-container img{
     width: 68%;
     margin-left: 12%;
-    top: -8px;
+    top: -24%;
     left: 8px;
     position: relative;
     margin-top:-13px
+}
+@media (max-width:400px){
+    main .player .card-content .rating, main .player .card-content .position{
+        font-size:6px;
+        margin-left:5px;
+    }
+    main .player .player-name{
+        font-size: 3px;
+        margin-left: auto;
+    }
+    .badge-container{
+        margin-top: -7px;
+    }
 }
