@@ -191,85 +191,6 @@ function addPlayer() {
     localStorage.setItem("allPlayers", JSON.stringify(allPlayers))
   });
 }
-
-
-// show players cards
-function showPlayers(){
-  showCards.innerHTML ="";
-allPlayers.forEach(play=>{
-  if (play.player_pos != "GK"){
-   showCards.innerHTML += `
-   <!-- card -->
-  <div class="player-card" >
-  <div class="card-settings">
-      <div class="edit-card">
-        <i class="fa-solid fa-pen"></i>
-      </div>
-      <div class="delete">
-        <i class="fa-solid fa-xmark"></i>
-      </div>
-    </div>
-      <div class="card-container">
-        <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
-        <div class="card-content">
-          <div class="card-header">
-            <span class="rating">${play.player_score}</span>
-            <span class="position">${play.player_pos}</span>
-          </div>
-          <div class="badge-container">
-            <img class="badge" src="${play.player_photo}" alt="Badge">
-          </div>
-          <div class="player-name">${play.player_name}</div>
-          <div class="player-stats">
-            <div>PAC <span>${play.player_pace}</span></div>
-            <div>SHO <span>${play.player_shooting}</span></div>
-            <div>PAS <span>${play.player_passing}</span></div>
-            <div>DRI <span>${play.player_dribling}</span></div>
-            <div>DEF <span>${play.player_deffending}</span></div>
-            <div>PHY <span>${play.player_physique}</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-`
-  } else {
-    showCards.innerHTML += `
-    <!-- card -->
-   <div class="player-card">
-   <div class="card-settings">
-       <div class="edit-card">
-         <i class="fa-solid fa-pen"></i>
-       </div>
-       <div class="delete">
-         <i class="fa-solid fa-xmark"></i>
-       </div>
-     </div>
-       <div class="card-container">
-         <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
-         <div class="card-content">
-           <div class="card-header">
-             <span class="rating">${play.player_score}</span>
-             <span class="position">${play.player_pos}</span>
-           </div>
-           <div class="badge-container">
-             <img class="badge" src="${play.player_photo}" alt="Badge">
-           </div>
-           <div class="player-name">${play.player_name}</div>
-           <div class="player-stats">
-             <div>DIV <span>${play.player_diving}</span></div>
-             <div>HAN <span>${play.player_handling}</span></div>
-             <div>kic <span>${play.player_kicking}</span></div>
-             <div>POS <span>${play.player_positioning}</span></div>
-             <div>REF <span>${play.player_reflex}</span></div>
-             <div>SPE <span>${play.player_speed}</span></div>
-           </div>
-         </div>
-       </div>
-     </div>
- `
-  }
-})
-}
 // edit & remove player function
 function remove(){
   let deletePlayer = document.querySelectorAll(".delete");
@@ -599,7 +520,6 @@ function checkFormation(formaa){
    }
   })
 }
-
 // call print formation function
 let formaSelect = document.querySelector("#forma");
 checkFormation("4-4-2")
@@ -616,7 +536,6 @@ formaSelect.addEventListener("change",()=>{
     checkFormation("4-3-3");
   }
 })
-
 document.querySelector("#forma").addEventListener("change",letPlayerInPlace);
 letPlayerInPlace();
 function letPlayerInPlace(){
@@ -643,8 +562,6 @@ let theIndexPitch;
       document.querySelector(".view-cards").classList.remove("hide");
       // empty the showing to add good players  
       document.querySelector(".all-cards").innerHTML = "";
-      // hide shwing cards when clicking in x 
-    
       allPlayers.forEach((thePlayer) =>{
         // show all good player for the clicked position 
         if (pitchPlayers[theIndexPitch].getAttribute("data-position") == thePlayer.player_pos){
@@ -756,10 +673,109 @@ if (pitchPlayers[theIndexPitch].getAttribute("data-goal") == thePlayer.player_po
     })
   })
 }
-
 }
 
 
+// show existting or remplacment players
+
+let pitchCards= document.querySelectorAll(".team .player");
+console.log(pitchCards);
+document.querySelector("#forma").addEventListener("change",showPlayers);
+// show players cards
+function showPlayers(){
+  showCards.innerHTML ="";
+  // Array to stock the printed players to not show them in view cards
+  let placed = [];
+allPlayers.forEach((play,playIndex)=>{
+  let isPlacement = false;
+  // check if the player is in the pitch cards 
+  pitchCards.forEach(pCard =>{{
+    if (play.player_name == pCard.querySelector(".player-name").innerText){
+      placed.push(playIndex);
+    }
+  }})
+  // if the players is on the pitch turn isplacement to true 
+  placed.forEach(placement =>{
+    if (playIndex == placement){
+      isPlacement = true;
+    }
+  })
+  // show players that are not in the pitch in the view cards 
+  if (isPlacement != true){
+    if (play.player_pos != "GK"){
+      showCards.innerHTML += `
+      <!-- card -->
+     <div class="player-card" >
+     <div class="card-settings">
+         <div class="edit-card">
+           <i class="fa-solid fa-pen"></i>
+         </div>
+         <div class="delete">
+           <i class="fa-solid fa-xmark"></i>
+         </div>
+       </div>
+         <div class="card-container">
+           <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+           <div class="card-content">
+             <div class="card-header">
+               <span class="rating">${play.player_score}</span>
+               <span class="position">${play.player_pos}</span>
+             </div>
+             <div class="badge-container">
+               <img class="badge" src="${play.player_photo}" alt="Badge">
+             </div>
+             <div class="player-name">${play.player_name}</div>
+             <div class="player-stats">
+               <div>PAC <span>${play.player_pace}</span></div>
+               <div>SHO <span>${play.player_shooting}</span></div>
+               <div>PAS <span>${play.player_passing}</span></div>
+               <div>DRI <span>${play.player_dribling}</span></div>
+               <div>DEF <span>${play.player_deffending}</span></div>
+               <div>PHY <span>${play.player_physique}</span></div>
+             </div>
+           </div>
+         </div>
+       </div>
+   `
+     } else {
+       showCards.innerHTML += `
+       <!-- card -->
+      <div class="player-card">
+      <div class="card-settings">
+          <div class="edit-card">
+            <i class="fa-solid fa-pen"></i>
+          </div>
+          <div class="delete">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+          <div class="card-container">
+            <img class="card-background" src="img/badge_gold.webp" alt="Card Background">
+            <div class="card-content">
+              <div class="card-header">
+                <span class="rating">${play.player_score}</span>
+                <span class="position">${play.player_pos}</span>
+              </div>
+              <div class="badge-container">
+                <img class="badge" src="${play.player_photo}" alt="Badge">
+              </div>
+              <div class="player-name">${play.player_name}</div>
+              <div class="player-stats">
+                <div>DIV <span>${play.player_diving}</span></div>
+                <div>HAN <span>${play.player_handling}</span></div>
+                <div>kic <span>${play.player_kicking}</span></div>
+                <div>POS <span>${play.player_positioning}</span></div>
+                <div>REF <span>${play.player_reflex}</span></div>
+                <div>SPE <span>${play.player_speed}</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    `
+     }
+  }
+})
+}
 
 
 
