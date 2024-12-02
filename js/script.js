@@ -678,7 +678,6 @@ if (pitchPlayers[theIndexPitch].getAttribute("data-goal") == thePlayer.player_po
 
 // show existting or remplacment players
 
-console.log(pitchCards);
 document.querySelector("#forma").addEventListener("change",showPlayers);
 // show players cards
 function showPlayers(){

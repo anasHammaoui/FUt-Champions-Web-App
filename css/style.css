@@ -6,11 +6,11 @@
 }
 body{position: relative;}
 main{
-    display: flex;
-    align-items: center;
     padding:40px 60px;
-    height: 100vh;
     background-color: #272C30;
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
 }
 @media screen and (max-width:985px){
     main{flex-direction: column;height: auto;}
@@ -19,9 +19,9 @@ main{
     main{flex-direction: column;height: auto; padding:20px 10px}
 }
 /* players part */
-.players{width:100%}
+.players{width:100%;margin-bottom: 30px;flex: 2;}
 .title{
-    color: #F1C40F;
+    color: #4DB6AC;
     font-size: 23px;
     text-align: center;
     margin-bottom: 30px;
@@ -31,13 +31,14 @@ main{
     background-color: #1F1F1F;
     padding:20px 30px;
 }
-.add, .remove,.cards{
+.add, .remove,.cards, .format{
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    align-items: center;
 }
 
-.add h4, .remove h4, .cards h4{ 
+.add h4, .remove h4, .cards h4, .format h4{ 
     color: #fff;
     font-size: 16px;
 }
@@ -61,28 +62,29 @@ main{
     background-color: #3c9ae7;
 }
 @media screen and (max-width:790px){
-    .add, .remove{
+    .add, .format, .cards{
       flex-direction: column;
       text-align: center;
     }
-    #add-btn, #remove-btn{
+    #add-btn, #show-btn, #forma {
        margin:10px auto
     }
 }
 /* select */
 #forma{
-    width: 100%;
+    width: 120px;
     height: 35px;
     text-align: center;
     font-weight: bold;
     background-color: #2C2C2C;
     color: #fff;
-    border:2px solid #F1C40F;
+    border:2px solid #4DB6AC;
 }
 /* stadium part */
 .stad{
     width: 100%;
     position: relative;
+    flex: 3;
 }
 #pitch-svg{
     width: 100%;
@@ -200,12 +202,11 @@ main{
 .row{margin-left:20px}
 /******************* adding player form *******************/
 .form-adding{
-    position: absolute;
-    left: 0;;
+    position: fixed;
+    left: 0;
     top: 0;
-    right: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #272C30;
     display: flex;
     background-color: #2c2c2c;
@@ -215,7 +216,8 @@ main{
     gap: 20px;
     align-items: center;
     padding:20px 60px;
-    z-index:10
+    z-index:10;
+    overflow-y: auto;
 }
 .out{
     color: #fff;
@@ -245,7 +247,7 @@ main{
   
   .form-adding h1 {
     text-align: center;
-    color: #ffc107;
+    color: #4DB6AC;
     margin-bottom: 20px;
   }
   
@@ -283,7 +285,7 @@ main{
     color: #fff;
 }
   .form-adding  input:focus, .form-adding select{
-    border: 2px solid #ffc107;
+    border: 2px solid #4DB6AC;
     outline: none;
   }
   .form-adding  input::placeholder {
