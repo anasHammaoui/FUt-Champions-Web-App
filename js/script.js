@@ -177,18 +177,6 @@ function addPlayer() {
     localStorage.setItem("allPlayers", JSON.stringify(allPlayers))
   });
 }
-// edit & remove player function
-function remove(){
-  let deletePlayer = document.querySelectorAll(".delete");
-  // delete card 
-  deletePlayer.forEach((del,i)=>{
-    del.addEventListener("click",()=>{
-      allPlayers.splice(i,1);
-      document.querySelectorAll(".player-card")[i].remove();
-      localStorage.setItem("allPlayers",JSON.stringify(allPlayers));
-    })
-  })
-}
 function edit(index) {
   let isEdited = false;
   
@@ -332,8 +320,7 @@ function edit(index) {
 
   edited();
 }
-// delete player 
-remove();
+
 // edit player
 document.querySelectorAll(".edit-card").forEach((card,i)=>{
   card.addEventListener("click",()=>{
@@ -353,7 +340,7 @@ document.querySelectorAll(".edit-card").forEach((card,i)=>{
 })
   })
 })
-
+showPlayers();
 // formations part
 let formations = [
   {
@@ -792,6 +779,19 @@ document.getElementById("show-btn").addEventListener("click",function (){
   if (allPlayers.length > 0){
     document.querySelector(".view-cards").classList.remove("hide");
     showPlayers();
+    let deletePlayer = document.querySelectorAll(".delete");
+  // delete card 
+  deletePlayer.forEach((del,i)=>{
+    del.addEventListener("click",()=>{
+      allPlayers.forEach((playDel,playI) =>{
+        if (del.parentNode.parentNode.querySelector(".player-name").innerHTML == playDel.player_name){
+          allPlayers.splice(playI,1);
+      localStorage.setItem("allPlayers",JSON.stringify(allPlayers));
+      del.parentNode.parentNode.remove();
+        }
+      })
+    })
+  })
   } else {
     alert("Il exist aucun joueur");
   }
