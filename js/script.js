@@ -15,6 +15,7 @@ document.querySelector(".add-p").addEventListener("click",()=>{
 document.getElementById("show-btn").addEventListener("click",function (){
   if (allPlayers.length > 0){
     document.querySelector(".view-cards").classList.remove("hide");
+    showPlayers();
   } else {
     alert("Il exist aucun joueur");
   }
@@ -33,7 +34,6 @@ let allPlayers= JSON.parse(localStorage.getItem("allPlayers")) || [];
 let theSelect = document.getElementById("f-pos");
 // add players
 function addPlayer() {
-  let isSubmited = false;
 
   // check if the player is goal keeper
   theSelect.addEventListener("change", added);
@@ -51,7 +51,6 @@ function addPlayer() {
 
   // Event listener for player form submission
   pForm.addEventListener("submit", (e) => {
-    isSubmited = true;
     // get all data
     const pPos = document.getElementById("f-pos").value.trim();
     const pName = document.getElementById("1").value.trim().toUpperCase();
@@ -90,12 +89,12 @@ function addPlayer() {
       parseInt(pDef) > 99
     ) {
       alert("tous les champs doivent être corrects et remplis");
-      isSubmited = false;
+      e.preventDefault()
       return;
     }
     if (pName == "") {
       alert("Le nom de joueur est obligatoire");
-      isSubmited = false;
+      e.preventDefault()
       return;
     }
     e.preventDefault();
@@ -118,13 +117,11 @@ function addPlayer() {
       input.value = "";
     });
     // save to local storage
-    localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
-    isSubmited = false;
+    localStorage.setItem("allPlayers", JSON.stringify(allPlayers))
   });
 
   // Event listener for goal keeper form submission
   gkForm.addEventListener("submit", (e) => {
-    isSubmited = true;
     // get all data
     const pPos = document.getElementById("f-pos").value.trim();
     const pName = document.getElementById("11").value.trim().toUpperCase();
@@ -163,12 +160,12 @@ function addPlayer() {
       parseInt(pSpee) > 99
     ) {
       alert("tous les champs doivent être corrects et remplis");
-      isSubmited = false;
+      e.preventDefault()
       return;
     }
     if (pName == "") {
       alert("Le nom de joueur est obligatoire");
-      isSubmited = false;
+      e.preventDefault()
       return;
     }
     e.preventDefault();
@@ -191,14 +188,14 @@ function addPlayer() {
       input.value = "";
     });
     // save to local storage
-    localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
-    isSubmited = false;
+    localStorage.setItem("allPlayers", JSON.stringify(allPlayers))
   });
 }
 
 
 // show players cards
 function showPlayers(){
+  showCards.innerHTML ="";
 allPlayers.forEach(play=>{
   if (play.player_pos != "GK"){
    showCards.innerHTML += `
@@ -429,9 +426,6 @@ function edit(index) {
 
   edited();
 }
-
-// call chow players function 
-showPlayers()
 // delete player 
 remove();
 // edit player
