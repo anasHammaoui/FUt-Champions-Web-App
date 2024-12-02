@@ -678,20 +678,22 @@ if (pitchPlayers[theIndexPitch].getAttribute("data-goal") == thePlayer.player_po
 
 // show existting or remplacment players
 
-let pitchCards= document.querySelectorAll(".team .player");
 console.log(pitchCards);
 document.querySelector("#forma").addEventListener("change",showPlayers);
 // show players cards
 function showPlayers(){
+let pitchCards= document.querySelectorAll(".team .player");
   showCards.innerHTML ="";
   // Array to stock the printed players to not show them in view cards
   let placed = [];
 allPlayers.forEach((play,playIndex)=>{
+  console.log(placed);
   let isPlacement = false;
   // check if the player is in the pitch cards 
   pitchCards.forEach(pCard =>{{
     if (play.player_name == pCard.querySelector(".player-name").innerText){
       placed.push(playIndex);
+      console.log(placed);
     }
   }})
   // if the players is on the pitch turn isplacement to true 
